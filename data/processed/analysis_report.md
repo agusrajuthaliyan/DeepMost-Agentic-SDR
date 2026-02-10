@@ -1,16 +1,16 @@
 
 # DeepMost Agentic SDR - Analysis Report
-Generated: 2026-02-09 00:42:34.070676
+Generated: 2026-02-10 12:19:26.967124
 
 ## Dataset Overview
-- Total Simulations: 6
-- Total Conversation Turns: 40
-- Success Rate: 50.0%
-- Average Score: 4.17/10
+- Total Simulations: 17
+- Total Conversation Turns: 115
+- Success Rate: 17.6%
+- Average Score: 3.41/10
 
 ## Key Findings
-- Average Conversation Length: 378 words
-- Seller/Buyer Word Ratio: 1.63
+- Average Conversation Length: 428 words
+- Seller/Buyer Word Ratio: 1.88
 - Most Common Objection: Unknown
 
 ## Recommendations
