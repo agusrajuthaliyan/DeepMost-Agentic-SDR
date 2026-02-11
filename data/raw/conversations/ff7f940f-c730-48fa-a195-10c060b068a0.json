@@ -1,0 +1,82 @@
+{
+  "simulation_id": "ff7f940f-c730-48fa-a195-10c060b068a0",
+  "timestamp": "2026-02-11T13:51:23.910688",
+  "target_url": "https://www.google.com/",
+  "company_context": "Google Search Images Maps Play YouTube News Gmail Drive More Calendar Translate Books Shopping Blogger Finance Photos Docs Even more » Account Options Sign in Search settings Web History Advanced search Google offered in: हिन्दी বাংলা తెలుగు मराठी தமிழ் ગુજરાતી ಕನ್ನಡ മലയാളം ਪੰਜਾਬੀ Advertising Business Solutions About Google Google.co.in © 2026 - Privacy - Terms",
+  "conversation": [
+    {
+      "turn": 1,
+      "speaker": "Seller",
+      "message": "Hi, this is Alex from DeepData AI. I noticed your company is scaling fast—are you currently struggling with data processing costs?",
+      "word_count": 21,
+      "char_count": 130
+    },
+    {
+      "turn": 1,
+      "speaker": "Buyer",
+      "message": "Scaling fast means our priorities are elsewhere right now. Unless you have a dramatically different approach to data processing that’s orders of magnitude cheaper than what we've already implemented, I'm not sure this is a conversation worth diverting resources for.",
+      "word_count": 40,
+      "char_count": 266
+    },
+    {
+      "turn": 2,
+      "speaker": "Seller",
+      "message": "I completely understand that priorities are high when scaling, and it's smart to focus on what matters most. Our clients have found that by addressing data processing inefficiencies, they actually *free up* resources and capital that can be redirected to those core scaling initiatives – often with significant cost savings. Would you be open to a brief chat to see if that's a possibility for you?",
+      "word_count": 66,
+      "char_count": 398
+    },
+    {
+      "turn": 2,
+      "speaker": "Buyer",
+      "message": "\"Orders of magnitude cheaper\" is a bold claim. Frankly, Alex, I've heard that line before from a dozen other vendors promising the moon. What makes DeepData AI so *orders of magnitude* different that you can actually deliver on that, and what's the proof?",
+      "word_count": 43,
+      "char_count": 255
+    },
+    {
+      "turn": 3,
+      "speaker": "Seller",
+      "message": "That's a fair point, and we understand the skepticism given past experiences. The \"orders of magnitude\" difference comes from our unique AI-driven approach that automates complex data transformation pipelines, something that typically requires significant manual engineering and thus drives up costs. I'd be happy to share a quick case study showing how we've achieved this for companies similar to yours, if you're open to a 15-minute call next week.",
+      "word_count": 69,
+      "char_count": 451
+    },
+    {
+      "turn": 3,
+      "speaker": "Buyer",
+      "message": "Another AI-driven automation that requires a \"quick case study\" to explain? Show me the raw numbers, not another story, before I even consider a 15-minute call.",
+      "word_count": 26,
+      "char_count": 160
+    },
+    {
+      "turn": 4,
+      "speaker": "Seller",
+      "message": "You're right to push for tangible results, and we're happy to share them. We can show you a clear ROI projection based on your data volume and current processing stack in a brief call, demonstrating the cost savings before diving into specific case studies.",
+      "word_count": 44,
+      "char_count": 257
+    },
+    {
+      "turn": 4,
+      "speaker": "Buyer",
+      "message": "Alright, an ROI projection is a start, but I'm still not seeing how you're \"orders of magnitude\" cheaper. Many vendors can provide projections; the real question is your ability to *outperform* existing solutions, not just present a shiny forecast.",
+      "word_count": 39,
+      "char_count": 248
+    }
+  ],
+  "analysis": {
+    "raw": "Score: 6\nOutcome: Partial Success\nKey_Objection: Price\nFeedback: The seller successfully shifted from a feature-based pitch to focusing on tangible ROI, but needs to be more direct in addressing the \"orders of magnitude\" claim upfront to build credibility.",
+    "parsed": {
+      "score": 6,
+      "outcome": "Partial Success",
+      "key_objection": "Price",
+      "feedback": "The seller successfully shifted from a feature-based pitch to focusing on tangible ROI, but needs to be more direct in addressing the \"orders of magnitude\" claim upfront to build credibility."
+    }
+  },
+  "metrics": {
+    "num_turns": 4,
+    "total_seller_words": 200,
+    "total_buyer_words": 148,
+    "avg_seller_words_per_turn": 50.0,
+    "avg_buyer_words_per_turn": 37.0,
+    "word_ratio_seller_buyer": 1.35,
+    "total_conversation_length": 348
+  }
+}
