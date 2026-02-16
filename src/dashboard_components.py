@@ -1,8 +1,24 @@
 """
 Dashboard Components for DeepMost Agentic SDR
+==============================================
 
-Premium interactive visualizations using Plotly.
-Designed for comprehensive sales analytics.
+Design Philosophy:
+  • INSIGHT-FIRST: Every chart title states the conclusion, not just the metric.
+  • GLANCEABLE: Key number is large and dominant. 3-second comprehension.
+  • CONSISTENT THEME: Deep Navy background, unified color language.
+  • MINIMAL CLUTTER: No chart junk. Every pixel earns its place.
+
+Unified Color System — "Deep Navy":
+  Background   : #0f172a (deep navy)
+  Surface      : #1e293b (card surface)
+  Border       : #334155 (subtle dividers)
+  Text Primary : #f1f5f9 (near-white)
+  Text Secondary: #94a3b8 (slate muted)
+  Accent / Brand: #818cf8 (soft indigo)
+  Win / Success : #34d399 (emerald)
+  Loss / Danger : #fb7185 (rose)
+  Neutral / Warn: #fbbf24 (amber)
+  Info / Link   : #60a5fa (sky blue)
 """
 
 import plotly.graph_objects as go
@@ -12,611 +28,769 @@ import pandas as pd
 import numpy as np
 from typing import Dict, List, Any, Optional
 
-# Premium color palette
-COLORS = {
-    'primary': '#6366f1',      # Indigo
-    'secondary': '#8b5cf6',    # Purple
-    'success': '#10b981',      # Green
-    'danger': '#ef4444',       # Red
-    'warning': '#f59e0b',      # Amber
-    'info': '#3b82f6',         # Blue
-    'dark': '#1e1e2e',         # Dark background
-    'light': '#f8fafc',        # Light text
-    'muted': '#64748b',        # Muted text
-    'gradient_start': '#667eea',
-    'gradient_end': '#764ba2'
-}
 
-GRADIENT_COLORS = ['#667eea', '#764ba2', '#f093fb', '#f5576c', '#4facfe']
+# ═══════════════════════════════════════════════════════════════════════
+# UNIFIED COLOR SYSTEM
+# ═══════════════════════════════════════════════════════════════════════
 
+class Theme:
+    """Single source of truth for all colors, fonts, sizes."""
+    # Backgrounds
+    BG       = '#0f172a'
+    SURFACE  = '#1e293b'
+    BORDER   = '#334155'
+
+    # Text
+    TEXT     = '#f1f5f9'
+    TEXT2    = '#94a3b8'
+    TEXT3    = '#64748b'
+
+    # Semantic Colors
+    ACCENT   = '#818cf8'   # Indigo — brand / primary actions
+    WIN      = '#34d399'   # Emerald — success, won deals
+    LOSS     = '#fb7185'   # Rose — failure, lost deals
+    WARN     = '#fbbf24'   # Amber — neutral, pending
+    INFO     = '#60a5fa'   # Sky — informational highlights
+
+    # Chart palette (for categorical data, ordered)
+    PALETTE  = ['#818cf8', '#34d399', '#fb7185', '#fbbf24', '#60a5fa',
+                '#c084fc', '#f472b6', '#38bdf8', '#a3e635', '#fb923c']
+
+    # Transparent overlays
+    WIN_BG   = 'rgba(52, 211, 153, 0.12)'
+    LOSS_BG  = 'rgba(251, 113, 133, 0.12)'
+    WARN_BG  = 'rgba(251, 191, 36, 0.10)'
+    ACCENT_BG = 'rgba(129, 140, 248, 0.12)'
+
+    FONT = 'Inter, -apple-system, Segoe UI, sans-serif'
+
+
+T = Theme  # shorthand
+
+
+# ─── Base layout applied to every figure ──────────────────────────────
+
+def _base(fig, height=380, **kw):
+    """Apply the Deep Navy theme to any Plotly figure."""
+    defaults = dict(
+        template='plotly_dark',
+        paper_bgcolor=T.SURFACE,       # card-like surface (#1e293b)
+        plot_bgcolor='#151d2e',         # slightly darker inner plot area
+        font=dict(family=T.FONT, color=T.TEXT, size=13),
+        margin=dict(l=55, r=30, t=80, b=50),
+        height=height,
+    )
+    defaults.update(kw)
+    fig.update_layout(**defaults)
+
+    # Consistent axis styling — visible gridlines
+    axis_style = dict(
+        gridcolor='rgba(71, 85, 105, 0.45)',   # #475569 at 45% — visible but not loud
+        zerolinecolor='rgba(71, 85, 105, 0.6)',
+        tickfont=dict(color=T.TEXT2, size=11),
+        title_font=dict(color=T.TEXT2, size=12),
+        linecolor=T.BORDER,
+        linewidth=1,
+    )
+    fig.update_xaxes(**axis_style)
+    fig.update_yaxes(**axis_style)
+    return fig
+
+
+def _title(main: str, sub: str = ""):
+    """Build a Plotly title dict with main + subtitle."""
+    text = f"<b>{main}</b>"
+    if sub:
+        text += f"<br><span style='font-size:12px;color:{T.TEXT2}'>{sub}</span>"
+    return dict(text=text, font=dict(size=18, color=T.TEXT), x=0.5, xanchor='center')
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# 1. EMPTY PLACEHOLDER
+# ═══════════════════════════════════════════════════════════════════════
 
 def create_empty_figure(message: str = "No data available") -> go.Figure:
-    """Create an empty figure with a message."""
     fig = go.Figure()
     fig.add_annotation(
-        text=message,
-        xref="paper", yref="paper",
-        x=0.5, y=0.5,
+        text=f"<i>{message}</i>",
+        xref="paper", yref="paper", x=0.5, y=0.5,
         showarrow=False,
-        font=dict(size=18, color=COLORS['muted'])
+        font=dict(size=16, color=T.TEXT3)
     )
-    fig.update_layout(
-        template='plotly_dark',
-        paper_bgcolor='rgba(0,0,0,0)',
-        plot_bgcolor='rgba(0,0,0,0)',
-        height=400
-    )
-    return fig
+    return _base(fig, height=350)
 
+
+# ═══════════════════════════════════════════════════════════════════════
+# 2. WIN RATE GAUGE — "You closed X% of deals"
+# ═══════════════════════════════════════════════════════════════════════
 
 def create_win_rate_gauge(win_rate: float) -> go.Figure:
-    """Create a premium gauge chart for win rate."""
+    # Determine verdict
+    if win_rate >= 60:
+        verdict = "Strong closer"
+        verdict_color = T.WIN
+    elif win_rate >= 35:
+        verdict = "Room to grow"
+        verdict_color = T.WARN
+    else:
+        verdict = "Needs coaching"
+        verdict_color = T.LOSS
+
     fig = go.Figure(go.Indicator(
-        mode="gauge+number+delta",
+        mode="gauge+number",
         value=win_rate,
-        number={'suffix': '%', 'font': {'size': 48, 'color': COLORS['light']}},
-        domain={'x': [0, 1], 'y': [0, 1]},
-        title={'text': "Win Rate", 'font': {'size': 24, 'color': COLORS['light']}},
-        delta={'reference': 50, 'increasing': {'color': COLORS['success']}, 'decreasing': {'color': COLORS['danger']}},
+        number={'suffix': '%', 'font': {'size': 52, 'color': T.TEXT, 'family': T.FONT}},
+        domain={'x': [0, 1], 'y': [0.1, 1]},
+        title={
+            'text': f"<span style='font-size:13px;color:{verdict_color}'>{verdict}</span>",
+            'font': {'size': 13}
+        },
         gauge={
-            'axis': {'range': [0, 100], 'tickcolor': COLORS['muted']},
-            'bar': {'color': COLORS['primary']},
-            'bgcolor': COLORS['dark'],
-            'borderwidth': 2,
-            'bordercolor': COLORS['muted'],
+            'axis': {'range': [0, 100], 'tickcolor': T.BORDER,
+                     'ticksuffix': '%', 'dtick': 25,
+                     'tickfont': {'color': T.TEXT3, 'size': 10}},
+            'bar': {'color': T.ACCENT, 'thickness': 0.7},
+            'bgcolor': T.SURFACE,
+            'borderwidth': 0,
             'steps': [
-                {'range': [0, 30], 'color': 'rgba(239, 68, 68, 0.3)'},
-                {'range': [30, 60], 'color': 'rgba(245, 158, 11, 0.3)'},
-                {'range': [60, 100], 'color': 'rgba(16, 185, 129, 0.3)'}
+                {'range': [0, 35],  'color': T.LOSS_BG},
+                {'range': [35, 60], 'color': T.WARN_BG},
+                {'range': [60, 100], 'color': T.WIN_BG}
             ],
-            'threshold': {
-                'line': {'color': COLORS['success'], 'width': 4},
-                'thickness': 0.75,
-                'value': 75
-            }
         }
     ))
-    
-    fig.update_layout(
-        template='plotly_dark',
-        paper_bgcolor='rgba(0,0,0,0)',
-        plot_bgcolor='rgba(0,0,0,0)',
-        height=300,
-        margin=dict(l=30, r=30, t=50, b=30)
-    )
-    
-    return fig
 
+    fig.add_annotation(
+        x=0.5, y=-0.02, xref='paper', yref='paper', showarrow=False,
+        text="<span style='color:#64748b'>🔴 &lt;35%</span>  · "
+             "<span style='color:#64748b'>🟡 35–60%</span>  · "
+             "<span style='color:#64748b'>🟢 &gt;60%</span>",
+        font=dict(size=11)
+    )
+
+    return _base(fig, height=300, margin=dict(l=30, r=30, t=50, b=40),
+                 title=_title("You closed {:.0f}% of deals".format(win_rate),
+                              "Percentage of simulations where the SDR booked a meeting"))
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# 3. OUTCOME SUNBURST — "How objections map to outcomes"
+# ═══════════════════════════════════════════════════════════════════════
 
 def create_outcome_sunburst(df: pd.DataFrame) -> go.Figure:
-    """Create a sunburst chart showing outcome by objection type."""
     if df.empty or 'outcome_label' not in df.columns:
-        return create_empty_figure("No outcome data available")
-    
-    # Prepare data for sunburst
-    sunburst_data = df.groupby(['outcome_label', 'objection_type']).size().reset_index(name='count')
-    
+        return create_empty_figure("No outcome data yet — run a simulation first")
+
+    data = df.groupby(['outcome_label', 'objection_type']).size().reset_index(name='count')
+
     fig = go.Figure(go.Sunburst(
-        labels=list(sunburst_data['outcome_label']) + list(sunburst_data['objection_type']),
-        parents=[''] * len(sunburst_data['outcome_label']) + list(sunburst_data['outcome_label']),
-        values=list(sunburst_data['count']) + list(sunburst_data['count']),
+        labels=list(data['outcome_label']) + list(data['objection_type']),
+        parents=[''] * len(data['outcome_label']) + list(data['outcome_label']),
+        values=list(data['count']) + list(data['count']),
         branchvalues='total',
         marker=dict(
-            colors=GRADIENT_COLORS[:len(sunburst_data)],
-            line=dict(color=COLORS['dark'], width=2)
+            colors=T.PALETTE[:len(data)],
+            line=dict(color=T.BG, width=2)
         ),
         textinfo='label+percent parent',
-        hovertemplate='<b>%{label}</b><br>Count: %{value}<br>%{percentParent:.1%} of parent<extra></extra>'
+        textfont=dict(size=12, color=T.TEXT),
+        hovertemplate='<b>%{label}</b><br>%{value} calls<br>%{percentParent:.0%} of parent<extra></extra>'
     ))
-    
-    fig.update_layout(
-        template='plotly_dark',
-        paper_bgcolor='rgba(0,0,0,0)',
-        plot_bgcolor='rgba(0,0,0,0)',
-        title=dict(text='Outcomes by Objection Type', font=dict(size=18, color=COLORS['light'])),
-        height=400,
-        margin=dict(l=20, r=20, t=60, b=20)
-    )
-    
-    return fig
 
+    return _base(fig, height=420, margin=dict(l=20, r=20, t=85, b=25),
+                 title=_title("How objections map to outcomes",
+                              "Inner ring = Win/Loss · Outer ring = Objection type raised"))
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# 4. SCORE DISTRIBUTION — "Most calls scored X–Y / 10"
+# ═══════════════════════════════════════════════════════════════════════
 
 def create_score_distribution(df: pd.DataFrame) -> go.Figure:
-    """Create a beautiful score distribution with violin plot."""
     if df.empty or 'score' not in df.columns:
-        return create_empty_figure("No score data available")
-    
-    fig = go.Figure()
-    
-    # Add violin plot
-    fig.add_trace(go.Violin(
-        y=df['score'],
-        box_visible=True,
-        meanline_visible=True,
-        fillcolor=COLORS['primary'],
-        opacity=0.6,
-        line_color=COLORS['secondary'],
-        name='Score Distribution'
-    ))
-    
-    # Add individual points
-    fig.add_trace(go.Scatter(
-        y=df['score'] + np.random.normal(0, 0.1, len(df)),
-        x=np.random.normal(0, 0.05, len(df)),
-        mode='markers',
-        marker=dict(
-            size=8,
-            color=df['score'],
-            colorscale='Viridis',
-            opacity=0.7
-        ),
-        name='Individual Scores'
-    ))
-    
-    fig.update_layout(
-        template='plotly_dark',
-        paper_bgcolor='rgba(0,0,0,0)',
-        plot_bgcolor='rgba(0,0,0,0)',
-        title=dict(text='Score Distribution', font=dict(size=18, color=COLORS['light'])),
-        yaxis_title='Score (1-10)',
-        showlegend=False,
-        height=350,
-        margin=dict(l=50, r=30, t=60, b=30)
-    )
-    
-    return fig
+        return create_empty_figure("No score data yet")
 
+    scores = df['score']
+    mean_s = scores.mean()
+    median_s = scores.median()
+
+    fig = go.Figure()
+
+    # Histogram with clear bins
+    fig.add_trace(go.Histogram(
+        x=scores,
+        nbinsx=10,
+        marker=dict(
+            color=T.ACCENT,
+            line=dict(color=T.BG, width=1),
+            opacity=0.85,
+        ),
+        hovertemplate='Score %{x}<br>%{y} calls<extra></extra>'
+    ))
+
+    # Mean line
+    fig.add_vline(
+        x=mean_s, line_width=2, line_dash="dash", line_color=T.WARN,
+        annotation_text=f"Mean: {mean_s:.1f}",
+        annotation_position="top",
+        annotation_font=dict(size=12, color=T.WARN)
+    )
+
+    # Median line
+    fig.add_vline(
+        x=median_s, line_width=2, line_dash="dot", line_color=T.INFO,
+        annotation_text=f"Median: {median_s:.1f}",
+        annotation_position="top left",
+        annotation_font=dict(size=12, color=T.INFO)
+    )
+
+    # Quality zones
+    fig.add_vrect(x0=0.5, x1=4.5, fillcolor=T.LOSS_BG, line_width=0,
+                  annotation_text="Weak", annotation_position="bottom left",
+                  annotation_font=dict(size=10, color=T.LOSS))
+    fig.add_vrect(x0=4.5, x1=7.5, fillcolor=T.WARN_BG, line_width=0,
+                  annotation_text="Average", annotation_position="bottom left",
+                  annotation_font=dict(size=10, color=T.WARN))
+    fig.add_vrect(x0=7.5, x1=10.5, fillcolor=T.WIN_BG, line_width=0,
+                  annotation_text="Strong", annotation_position="bottom left",
+                  annotation_font=dict(size=10, color=T.WIN))
+
+    return _base(fig, height=370,
+                 title=_title(
+                     f"Most calls scored around {median_s:.0f}/10",
+                     f"{len(df)} simulations · Mean {mean_s:.1f} · Median {median_s:.1f}"
+                 ),
+                 xaxis_title="Call Quality Score (1 = poor → 10 = excellent)",
+                 yaxis_title="Number of Calls",
+                 bargap=0.06, showlegend=False)
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# 5. SENTIMENT TRAJECTORY — "Buyer warmed up / cooled down"
+# ═══════════════════════════════════════════════════════════════════════
 
 def create_sentiment_trajectory(sentiment_data: Dict[str, Any]) -> go.Figure:
-    """Create a sentiment trajectory line chart."""
     if not sentiment_data or 'turns' not in sentiment_data or not sentiment_data['turns']:
-        return create_empty_figure("No sentiment data available")
-    
+        return create_empty_figure("Sentiment data will appear as the call progresses")
+
     turns = sentiment_data['turns']
-    
-    fig = go.Figure()
-    
-    # Sentiment line
     x = [t['turn'] for t in turns]
     y = [t['score'] for t in turns]
-    
-    # Create gradient fill
-    fig.add_trace(go.Scatter(
-        x=x,
-        y=y,
-        mode='lines+markers',
-        name='Sentiment',
-        line=dict(color=COLORS['primary'], width=3, shape='spline'),
-        marker=dict(
-            size=12,
-            color=[COLORS['success'] if s > 0.2 else COLORS['danger'] if s < -0.2 else COLORS['warning'] for s in y],
-            line=dict(color=COLORS['light'], width=2)
-        ),
-        fill='tozeroy',
-        fillcolor='rgba(99, 102, 241, 0.2)'
-    ))
-    
-    # Add zero line
-    fig.add_hline(y=0, line_dash="dash", line_color=COLORS['muted'], opacity=0.5)
-    
-    # Add trajectory annotation
-    trajectory_type = sentiment_data.get('trajectory_type', 'unknown')
-    trajectory_emoji = {'improving': '📈', 'declining': '📉', 'recovery': '🔄', 'stable': '➡️'}.get(trajectory_type, '❓')
-    
-    fig.add_annotation(
-        x=max(x), y=max(y),
-        text=f"{trajectory_emoji} {trajectory_type.title()}",
-        showarrow=False,
-        font=dict(size=14, color=COLORS['light']),
-        bgcolor=COLORS['dark'],
-        bordercolor=COLORS['primary'],
-        borderwidth=2,
-        borderpad=4
-    )
-    
-    fig.update_layout(
-        template='plotly_dark',
-        paper_bgcolor='rgba(0,0,0,0)',
-        plot_bgcolor='rgba(0,0,0,0)',
-        title=dict(text='Sentiment Trajectory', font=dict(size=18, color=COLORS['light'])),
-        xaxis_title='Turn',
-        yaxis_title='Sentiment Score',
-        yaxis=dict(range=[-1.2, 1.2]),
-        height=300,
-        margin=dict(l=50, r=30, t=60, b=50)
-    )
-    
-    return fig
 
+    trajectory_type = sentiment_data.get('trajectory_type', 'unknown')
+    traj_labels = {
+        'improving': ('📈 Buyer warmed up', T.WIN),
+        'declining': ('📉 Buyer cooled down', T.LOSS),
+        'recovery': ('🔄 Buyer recovered', T.INFO),
+        'stable':   ('➡️ Buyer stayed neutral', T.WARN),
+    }
+    traj_text, traj_color = traj_labels.get(trajectory_type, ('❓ Unknown', T.TEXT3))
+
+    fig = go.Figure()
+
+    # Background zones
+    fig.add_hrect(y0=0.2, y1=1.2, fillcolor=T.WIN_BG, line_width=0)
+    fig.add_hrect(y0=-0.2, y1=0.2, fillcolor=T.WARN_BG, line_width=0)
+    fig.add_hrect(y0=-1.2, y1=-0.2, fillcolor=T.LOSS_BG, line_width=0)
+
+    # Zone labels (right side)
+    fig.add_annotation(x=max(x)+0.3, y=0.7, text="Receptive", showarrow=False,
+                       font=dict(size=10, color=T.WIN), xanchor='left')
+    fig.add_annotation(x=max(x)+0.3, y=0.0, text="Neutral", showarrow=False,
+                       font=dict(size=10, color=T.WARN), xanchor='left')
+    fig.add_annotation(x=max(x)+0.3, y=-0.7, text="Resistant", showarrow=False,
+                       font=dict(size=10, color=T.LOSS), xanchor='left')
+
+    # Sentiment line
+    marker_colors = [
+        T.WIN if s > 0.2 else T.LOSS if s < -0.2 else T.WARN for s in y
+    ]
+    fig.add_trace(go.Scatter(
+        x=x, y=y,
+        mode='lines+markers+text',
+        line=dict(color=T.ACCENT, width=3, shape='spline'),
+        marker=dict(size=14, color=marker_colors,
+                    line=dict(color=T.BG, width=2)),
+        text=[f"{s:+.2f}" for s in y],
+        textposition='top center',
+        textfont=dict(size=10, color=T.TEXT2),
+        fill='tozeroy',
+        fillcolor='rgba(129, 140, 248, 0.08)',
+        hovertemplate='Turn %{x}<br>Sentiment: %{y:+.2f}<extra></extra>'
+    ))
+
+    return _base(fig, height=320,
+                 margin=dict(l=55, r=75, t=80, b=55),
+                 title=_title(traj_text, "How the buyer's attitude changed each turn"),
+                 xaxis_title="Conversation Turn",
+                 yaxis_title="Sentiment (−1 hostile → +1 receptive)",
+                 xaxis=dict(dtick=1),
+                 yaxis=dict(range=[-1.3, 1.3]),
+                 showlegend=False)
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# 6. OBJECTION ANALYSIS — Clear horizontal bars (not radar)
+# ═══════════════════════════════════════════════════════════════════════
 
 def create_objection_radar(objections: Dict[str, Any]) -> go.Figure:
-    """Create a radar chart for objection analysis."""
+    """
+    Horizontal bar chart showing objection frequency.
+    Replaced radar (hard to read) with simple, clear bars.
+    """
     if not objections or 'objections' not in objections or not objections['objections']:
-        return create_empty_figure("No objections detected")
-    
+        return create_empty_figure("No objections detected in this call")
+
     categories = list(objections['objections'].keys())
     values = [objections['objections'][cat]['count'] for cat in categories]
-    
-    # Close the radar
-    categories = categories + [categories[0]]
-    values = values + [values[0]]
-    
-    fig = go.Figure()
-    
-    fig.add_trace(go.Scatterpolar(
-        r=values,
-        theta=categories,
-        fill='toself',
-        fillcolor='rgba(139, 92, 246, 0.3)',
-        line=dict(color=COLORS['secondary'], width=2),
-        marker=dict(size=8, color=COLORS['secondary'])
-    ))
-    
-    fig.update_layout(
-        template='plotly_dark',
-        paper_bgcolor='rgba(0,0,0,0)',
-        plot_bgcolor='rgba(0,0,0,0)',
-        polar=dict(
-            radialaxis=dict(
-                visible=True,
-                range=[0, max(values) + 1],
-                gridcolor=COLORS['muted'],
-                tickfont=dict(color=COLORS['muted'])
-            ),
-            angularaxis=dict(
-                gridcolor=COLORS['muted'],
-                tickfont=dict(color=COLORS['light'], size=12)
-            ),
-            bgcolor='rgba(0,0,0,0)'
-        ),
-        title=dict(text='Objection Analysis', font=dict(size=18, color=COLORS['light'])),
-        height=350,
-        margin=dict(l=60, r=60, t=60, b=40)
-    )
-    
-    return fig
 
+    # Sort by count descending
+    paired = sorted(zip(categories, values), key=lambda p: p[1])
+    categories = [p[0] for p in paired]
+    values = [p[1] for p in paired]
+
+    # Color the top objection differently
+    max_val = max(values) if values else 1
+    bar_colors = [T.LOSS if v == max_val else T.ACCENT for v in values]
+
+    fig = go.Figure(go.Bar(
+        y=categories, x=values,
+        orientation='h',
+        marker=dict(color=bar_colors, line=dict(color=T.BG, width=1)),
+        text=[f"  {v}×" for v in values],
+        textposition='outside',
+        textfont=dict(size=13, color=T.TEXT),
+        hovertemplate='%{y}: raised %{x} time(s)<extra></extra>'
+    ))
+
+    # Highlight worst objection
+    top_obj = categories[-1] if categories else "N/A"
+    fig.add_annotation(
+        x=0.5, y=-0.15, xref='paper', yref='paper', showarrow=False,
+        text=f"⚠️ <b>{top_obj}</b> was the hardest objection to overcome",
+        font=dict(size=12, color=T.WARN)
+    )
+
+    return _base(fig, height=320,
+                 margin=dict(l=120, r=50, t=80, b=55),
+                 title=_title("Objections the buyer raised",
+                              "How many times each concern came up · "
+                              "Red = most frequent"),
+                 xaxis_title="Times Raised",
+                 showlegend=False)
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# 7. ENGAGEMENT METRICS — Three big KPI cards
+# ═══════════════════════════════════════════════════════════════════════
 
 def create_engagement_metrics(engagement: Dict[str, Any]) -> go.Figure:
-    """Create a multi-metric engagement visualization."""
     if not engagement:
-        return create_empty_figure("No engagement data available")
-    
+        return create_empty_figure("No engagement data yet")
+
     fig = make_subplots(
         rows=1, cols=3,
-        specs=[[{'type': 'indicator'}, {'type': 'indicator'}, {'type': 'indicator'}]],
-        subplot_titles=['Talk Ratio', 'Seller Questions', 'Buyer Questions']
+        specs=[[{'type': 'indicator'}] * 3],
+        subplot_titles=[
+            '<b>Talk Ratio</b><br><span style="font-size:10px;color:#94a3b8">'
+            'Seller words ÷ Buyer words</span>',
+            '<b>Seller Questions</b><br><span style="font-size:10px;color:#94a3b8">'
+            'Discovery & probing</span>',
+            '<b>Buyer Questions</b><br><span style="font-size:10px;color:#94a3b8">'
+            'Interest signals</span>'
+        ]
     )
-    
-    # Talk Ratio
-    talk_ratio = engagement.get('talk_ratio', 1.0)
+
+    ratio = engagement.get('talk_ratio', 1.0)
+    ratio_color = T.WIN if 0.8 <= ratio <= 1.3 else T.WARN
+
     fig.add_trace(go.Indicator(
-        mode="number+delta",
-        value=talk_ratio,
-        number={'font': {'size': 36, 'color': COLORS['light']}, 'valueformat': '.2f'},
-        delta={'reference': 1.0, 'relative': True},
-        domain={'row': 0, 'column': 0}
+        mode="number",
+        value=ratio,
+        number={'font': {'size': 40, 'color': ratio_color, 'family': T.FONT},
+                'valueformat': '.2f'},
     ), row=1, col=1)
-    
-    # Seller Questions
+
     fig.add_trace(go.Indicator(
         mode="number",
         value=engagement.get('seller_questions', 0),
-        number={'font': {'size': 36, 'color': COLORS['primary']}}
+        number={'font': {'size': 40, 'color': T.ACCENT, 'family': T.FONT}}
     ), row=1, col=2)
-    
-    # Buyer Questions
+
     fig.add_trace(go.Indicator(
         mode="number",
         value=engagement.get('buyer_questions', 0),
-        number={'font': {'size': 36, 'color': COLORS['secondary']}}
+        number={'font': {'size': 40, 'color': T.INFO, 'family': T.FONT}}
     ), row=1, col=3)
-    
-    fig.update_layout(
-        template='plotly_dark',
-        paper_bgcolor='rgba(0,0,0,0)',
-        plot_bgcolor='rgba(0,0,0,0)',
-        height=200,
-        margin=dict(l=20, r=20, t=40, b=20)
-    )
-    
-    return fig
 
+    fig.add_annotation(
+        x=0.5, y=-0.2, xref='paper', yref='paper', showarrow=False,
+        text=f"<span style='color:{T.TEXT3}'>Ideal talk ratio ≈ 0.8–1.2 (balanced dialogue) · "
+             f"Green = balanced · Amber = one-sided</span>",
+        font=dict(size=11)
+    )
+
+    return _base(fig, height=200, margin=dict(l=20, r=20, t=55, b=45))
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# 8. WIN PROBABILITY BAR
+# ═══════════════════════════════════════════════════════════════════════
 
 def create_win_probability_funnel(win_prob: Dict[str, Any]) -> go.Figure:
-    """Create a visual win probability indicator."""
     if not win_prob:
         return create_empty_figure("No prediction available")
-    
+
     prob = win_prob.get('win_probability', 0.5) * 100
     confidence = win_prob.get('confidence', 'low')
-    
-    # Create a horizontal bar
-    fig = go.Figure()
-    
-    # Background bar
-    fig.add_trace(go.Bar(
-        y=['Win Probability'],
-        x=[100],
-        orientation='h',
-        marker=dict(color='rgba(100, 100, 100, 0.3)'),
-        showlegend=False,
-        hoverinfo='skip'
-    ))
-    
-    # Probability bar
-    color = COLORS['success'] if prob > 65 else COLORS['warning'] if prob > 35 else COLORS['danger']
-    
-    fig.add_trace(go.Bar(
-        y=['Win Probability'],
-        x=[prob],
-        orientation='h',
-        marker=dict(
-            color=color,
-            line=dict(color=COLORS['light'], width=1)
-        ),
-        text=[f"{prob:.1f}%"],
-        textposition='inside',
-        textfont=dict(size=20, color=COLORS['light']),
-        showlegend=False
-    ))
-    
-    # Add confidence indicator
-    confidence_emoji = {'high': '🎯', 'medium': '📊', 'low': '❓'}.get(confidence, '❓')
-    
-    fig.add_annotation(
-        x=50, y=1.2,
-        text=f"Confidence: {confidence_emoji} {confidence.title()}",
-        showarrow=False,
-        font=dict(size=14, color=COLORS['muted'])
-    )
-    
-    fig.update_layout(
-        template='plotly_dark',
-        paper_bgcolor='rgba(0,0,0,0)',
-        plot_bgcolor='rgba(0,0,0,0)',
-        barmode='overlay',
-        xaxis=dict(range=[0, 100], showticklabels=False, showgrid=False),
-        yaxis=dict(showticklabels=False),
-        height=120,
-        margin=dict(l=20, r=20, t=40, b=20),
-        title=dict(text='Win Probability', font=dict(size=16, color=COLORS['light']))
-    )
-    
-    return fig
 
+    if prob > 65:
+        color, verdict = T.WIN, "Likely to book ✓"
+    elif prob > 35:
+        color, verdict = T.WARN, "Could go either way"
+    else:
+        color, verdict = T.LOSS, "Unlikely to convert"
+
+    fig = go.Figure()
+
+    # Background track
+    fig.add_trace(go.Bar(
+        y=[''], x=[100], orientation='h',
+        marker=dict(color=T.SURFACE), showlegend=False, hoverinfo='skip'
+    ))
+
+    # Probability fill
+    fig.add_trace(go.Bar(
+        y=[''], x=[prob], orientation='h',
+        marker=dict(color=color),
+        text=[f"  {prob:.0f}% — {verdict}"],
+        textposition='inside',
+        textfont=dict(size=16, color=T.TEXT, family=T.FONT),
+        showlegend=False,
+        hovertemplate=f'{prob:.1f}% win probability<extra></extra>'
+    ))
+
+    fig.add_annotation(
+        x=50, y=1.1, text=f"Confidence: {confidence.upper()}",
+        showarrow=False, font=dict(size=11, color=T.TEXT3)
+    )
+
+    return _base(fig, height=110,
+                 margin=dict(l=10, r=10, t=35, b=15),
+                 barmode='overlay',
+                 xaxis=dict(range=[0, 100], showticklabels=False, showgrid=False),
+                 yaxis=dict(showticklabels=False, showgrid=False),
+                 title=_title("Predicted Win Probability"))
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# 9. PERFORMANCE TREND — "Your win rate is improving / declining"
+# ═══════════════════════════════════════════════════════════════════════
 
 def create_performance_trend(df: pd.DataFrame) -> go.Figure:
-    """Create a performance trend chart over time."""
     if df.empty or 'timestamp' not in df.columns:
-        return create_empty_figure("No trend data available")
-    
+        return create_empty_figure("Not enough data for trends — run more simulations")
+
     df = df.copy()
     df['timestamp'] = pd.to_datetime(df['timestamp'])
-    df = df.sort_values('timestamp')
-    
-    fig = make_subplots(
-        rows=2, cols=1,
-        shared_xaxes=True,
-        vertical_spacing=0.1,
-        subplot_titles=['Success Rate (Rolling)', 'Average Score (Rolling)']
-    )
-    
-    # Calculate rolling metrics
-    window = min(5, len(df))
-    if 'outcome_binary' in df.columns:
-        df['rolling_success'] = df['outcome_binary'].rolling(window=window, min_periods=1).mean() * 100
-        
-        fig.add_trace(go.Scatter(
-            x=df['timestamp'],
-            y=df['rolling_success'],
-            mode='lines+markers',
-            name='Success Rate',
-            line=dict(color=COLORS['success'], width=2),
-            fill='tozeroy',
-            fillcolor='rgba(16, 185, 129, 0.2)'
-        ), row=1, col=1)
-    
-    if 'score' in df.columns:
-        df['rolling_score'] = df['score'].rolling(window=window, min_periods=1).mean()
-        
-        fig.add_trace(go.Scatter(
-            x=df['timestamp'],
-            y=df['rolling_score'],
-            mode='lines+markers',
-            name='Avg Score',
-            line=dict(color=COLORS['primary'], width=2),
-            fill='tozeroy',
-            fillcolor='rgba(99, 102, 241, 0.2)'
-        ), row=2, col=1)
-    
-    fig.update_layout(
-        template='plotly_dark',
-        paper_bgcolor='rgba(0,0,0,0)',
-        plot_bgcolor='rgba(0,0,0,0)',
-        height=400,
-        margin=dict(l=50, r=30, t=60, b=30),
-        showlegend=False
-    )
-    
-    fig.update_yaxes(title_text="Rate %", row=1, col=1)
-    fig.update_yaxes(title_text="Score", row=2, col=1)
-    
-    return fig
+    df = df.sort_values('timestamp').reset_index(drop=True)
+    n = len(df)
+    w = min(5, n)
 
+    # Compute trend direction
+    trend_text, trend_color = "➡️ Stable performance", T.WARN
+    if 'outcome_binary' in df.columns and n >= 4:
+        df['rolling_wr'] = df['outcome_binary'].rolling(window=w, min_periods=1).mean() * 100
+        first = df['rolling_wr'].iloc[:n//2].mean()
+        second = df['rolling_wr'].iloc[n//2:].mean()
+        if second > first + 5:
+            trend_text, trend_color = "📈 Win rate is improving", T.WIN
+        elif second < first - 5:
+            trend_text, trend_color = "📉 Win rate is declining", T.LOSS
+
+    fig = make_subplots(
+        rows=2, cols=1, shared_xaxes=True, vertical_spacing=0.16,
+        subplot_titles=[
+            f'<b>Win Rate %</b> <span style="font-size:11px;color:{T.TEXT3}">'
+            f'(rolling {w}-sim window)</span>',
+            f'<b>Call Quality Score</b> <span style="font-size:11px;color:{T.TEXT3}">'
+            f'(rolling {w}-sim average)</span>'
+        ]
+    )
+
+    if 'rolling_wr' in df.columns:
+        fig.add_trace(go.Scatter(
+            x=df['timestamp'], y=df['rolling_wr'],
+            mode='lines+markers',
+            line=dict(color=T.WIN, width=2.5),
+            marker=dict(size=6, color=T.WIN),
+            fill='tozeroy', fillcolor=T.WIN_BG,
+            hovertemplate='%{x|%d %b %Y}<br>Win Rate: %{y:.1f}%<extra></extra>'
+        ), row=1, col=1)
+
+        fig.add_hline(y=50, row=1, col=1, line_dash="dot", line_color=T.TEXT3,
+                      annotation_text="50% baseline", annotation_position="bottom right",
+                      annotation_font=dict(size=10, color=T.TEXT3))
+
+    if 'score' in df.columns:
+        df['rolling_sc'] = df['score'].rolling(window=w, min_periods=1).mean()
+        fig.add_trace(go.Scatter(
+            x=df['timestamp'], y=df['rolling_sc'],
+            mode='lines+markers',
+            line=dict(color=T.ACCENT, width=2.5),
+            marker=dict(size=6, color=T.ACCENT),
+            fill='tozeroy', fillcolor=T.ACCENT_BG,
+            hovertemplate='%{x|%d %b %Y}<br>Score: %{y:.1f}/10<extra></extra>'
+        ), row=2, col=1)
+
+    fig.update_yaxes(title_text="Win Rate %", row=1, col=1)
+    fig.update_yaxes(title_text="Score (1-10)", row=2, col=1)
+
+    return _base(fig, height=450,
+                 margin=dict(l=60, r=30, t=85, b=40), showlegend=False,
+                 title=_title(trend_text,
+                              f"Performance across {n} simulations over time"))
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# 10. FEATURE IMPORTANCE — "What drives a successful deal?"
+# ═══════════════════════════════════════════════════════════════════════
 
 def create_feature_importance(importance: Dict[str, float]) -> go.Figure:
-    """Create a feature importance bar chart."""
     if not importance:
-        return create_empty_figure("No feature importance data")
-    
-    # Sort by importance
-    sorted_features = sorted(importance.items(), key=lambda x: x[1], reverse=True)
-    features = [f[0] for f in sorted_features]
-    values = [f[1] for f in sorted_features]
-    
-    fig = go.Figure(go.Bar(
-        x=values,
-        y=features,
-        orientation='h',
-        marker=dict(
-            color=values,
-            colorscale='Viridis',
-            line=dict(color=COLORS['light'], width=1)
-        ),
-        text=[f"{v:.2%}" for v in values],
-        textposition='outside',
-        textfont=dict(color=COLORS['light'])
-    ))
-    
-    fig.update_layout(
-        template='plotly_dark',
-        paper_bgcolor='rgba(0,0,0,0)',
-        plot_bgcolor='rgba(0,0,0,0)',
-        title=dict(text='Feature Importance (Win Prediction)', font=dict(size=18, color=COLORS['light'])),
-        xaxis_title='Importance',
-        height=300,
-        margin=dict(l=150, r=50, t=60, b=40)
-    )
-    
-    return fig
+        return create_empty_figure("Need more data to train the ML model")
 
+    friendly = {
+        'total_conversation_length': 'Total Conversation Length',
+        'word_ratio_seller_buyer': 'Seller / Buyer Word Ratio',
+        'seller_avg_words_per_turn': 'Avg Words per Seller Turn',
+        'buyer_avg_words_per_turn': 'Avg Words per Buyer Turn',
+        'seller_total_words': 'Total Seller Words',
+        'buyer_total_words': 'Total Buyer Words',
+        'seller_max_words': 'Longest Seller Turn',
+        'buyer_max_words': 'Longest Buyer Turn',
+        'num_turns': 'Number of Turns',
+        'context_length': 'Company Context Length',
+    }
+
+    items = sorted(importance.items(), key=lambda x: x[1])  # ascending for horizontal
+    names = [friendly.get(k, k) for k, _ in items]
+    vals = [v for _, v in items]
+
+    # Gradient from muted to accent
+    bar_colors = [T.ACCENT if v >= max(vals) * 0.8 else T.INFO if v >= max(vals) * 0.4
+                  else T.TEXT3 for v in vals]
+
+    fig = go.Figure(go.Bar(
+        y=names, x=vals, orientation='h',
+        marker=dict(color=bar_colors, line=dict(color=T.BG, width=1)),
+        text=[f"{v:.0%}" for v in vals],
+        textposition='outside',
+        textfont=dict(size=12, color=T.TEXT),
+        hovertemplate='%{y}<br>Importance: %{x:.1%}<extra></extra>'
+    ))
+
+    top_feature = names[-1] if names else "N/A"
+    fig.add_annotation(
+        x=0.5, y=-0.14, xref='paper', yref='paper', showarrow=False,
+        text=f"🏆 Top predictor: <b>{top_feature}</b>",
+        font=dict(size=13, color=T.WIN)
+    )
+
+    return _base(fig, height=350,
+                 margin=dict(l=200, r=60, t=80, b=55), showlegend=False,
+                 title=_title("What drives a successful deal?",
+                              "ML feature importance — longer bar = stronger influence on outcome"))
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# 11. COMPREHENSIVE DASHBOARD  (2×2 grid)
+# ═══════════════════════════════════════════════════════════════════════
 
 def create_comprehensive_dashboard(df: pd.DataFrame, insights: Dict[str, Any]) -> go.Figure:
-    """Create a comprehensive multi-chart dashboard."""
+    """
+    Main 2×2 dashboard:
+    ┌─────────────────────────┬─────────────────────────┐
+    │  Win Rate (big number)  │  Win vs Loss pie chart  │
+    ├─────────────────────────┼─────────────────────────┤
+    │  Score over time (line) │  Objection counts (bar) │
+    └─────────────────────────┴─────────────────────────┘
+    """
     if df.empty:
-        return create_empty_figure("Run simulations to see analytics")
-    
+        return create_empty_figure("Run simulations to see the dashboard")
+
+    win_rate = df['outcome_binary'].mean() * 100 if 'outcome_binary' in df.columns else 0
+    avg_score = df['score'].mean() if 'score' in df.columns else 0
+    total = len(df)
+
     fig = make_subplots(
         rows=2, cols=2,
         specs=[
             [{'type': 'indicator'}, {'type': 'pie'}],
-            [{'type': 'scatter'}, {'type': 'bar'}]
+            [{'type': 'scatter'},   {'type': 'bar'}]
         ],
-        subplot_titles=['Win Rate', 'Outcome Distribution', 'Score Trend', 'Objection Types']
+        subplot_titles=[
+            '<b>Win Rate</b>',
+            '<b>Win vs Loss Breakdown</b>',
+            '<b>Score Trend</b> <span style="color:#94a3b8;font-size:11px">(each dot = 1 call)</span>',
+            '<b>Top Buyer Objections</b>'
+        ],
+        vertical_spacing=0.18,
+        horizontal_spacing=0.12
     )
-    
-    # Win Rate Gauge
-    win_rate = df['outcome_binary'].mean() * 100 if 'outcome_binary' in df.columns else 0
-    fig.add_trace(go.Indicator(
-        mode="gauge+number",
-        value=win_rate,
-        number={'suffix': '%', 'font': {'size': 32}},
-        gauge={
-            'axis': {'range': [0, 100]},
-            'bar': {'color': COLORS['primary']},
-            'steps': [
-                {'range': [0, 40], 'color': 'rgba(239, 68, 68, 0.3)'},
-                {'range': [40, 70], 'color': 'rgba(245, 158, 11, 0.3)'},
-                {'range': [70, 100], 'color': 'rgba(16, 185, 129, 0.3)'}
-            ]
-        }
-    ), row=1, col=1)
-    
-    # Outcome Distribution Pie
-    if 'outcome_label' in df.columns:
-        outcome_counts = df['outcome_label'].value_counts()
-        fig.add_trace(go.Pie(
-            labels=outcome_counts.index.tolist(),
-            values=outcome_counts.values.tolist(),
-            marker=dict(colors=[COLORS['success'], COLORS['danger'], COLORS['warning']]),
-            textinfo='percent+label'
-        ), row=1, col=2)
-    
-    # Score Trend
-    if 'timestamp' in df.columns and 'score' in df.columns:
-        df_sorted = df.sort_values('timestamp')
-        fig.add_trace(go.Scatter(
-            x=list(range(len(df_sorted))),
-            y=df_sorted['score'],
-            mode='lines+markers',
-            line=dict(color=COLORS['primary']),
-            marker=dict(size=8)
-        ), row=2, col=1)
-    
-    # Objection Bar
-    if 'objection_type' in df.columns:
-        obj_counts = df['objection_type'].value_counts()
-        fig.add_trace(go.Bar(
-            x=obj_counts.index.tolist(),
-            y=obj_counts.values.tolist(),
-            marker=dict(color=GRADIENT_COLORS[:len(obj_counts)])
-        ), row=2, col=2)
-    
-    fig.update_layout(
-        template='plotly_dark',
-        paper_bgcolor='rgba(0,0,0,0)',
-        plot_bgcolor='rgba(0,0,0,0)',
-        height=600,
-        showlegend=False,
-        margin=dict(l=40, r=40, t=80, b=40),
-        title=dict(
-            text='📊 Sales Performance Dashboard',
-            font=dict(size=24, color=COLORS['light']),
-            x=0.5
-        )
-    )
-    
-    return fig
 
+    # 1. Win Rate Indicator
+    wr_color = T.WIN if win_rate >= 60 else T.WARN if win_rate >= 35 else T.LOSS
+    fig.add_trace(go.Indicator(
+        mode="number",
+        value=win_rate,
+        number={'suffix': '%', 'font': {'size': 56, 'color': wr_color, 'family': T.FONT}},
+    ), row=1, col=1)
+
+    # 2. Outcome Pie
+    if 'outcome_label' in df.columns:
+        oc = df['outcome_label'].value_counts()
+        pie_colors = []
+        for label in oc.index:
+            l = label.lower()
+            if 'success' in l:
+                pie_colors.append(T.WIN)
+            elif 'fail' in l:
+                pie_colors.append(T.LOSS)
+            else:
+                pie_colors.append(T.WARN)
+
+        fig.add_trace(go.Pie(
+            labels=oc.index.tolist(),
+            values=oc.values.tolist(),
+            marker=dict(colors=pie_colors, line=dict(color=T.BG, width=2)),
+            textinfo='percent+label',
+            textfont=dict(size=12, color=T.TEXT),
+            hovertemplate='%{label}: %{value} calls (%{percent})<extra></extra>',
+            hole=0.4,  # donut for clarity
+        ), row=1, col=2)
+
+    # 3. Score Trend
+    if 'timestamp' in df.columns and 'score' in df.columns:
+        ds = df.sort_values('timestamp')
+        n = len(ds)
+        dot_colors = [T.WIN if s >= 6 else T.LOSS if s <= 3 else T.WARN for s in ds['score']]
+
+        fig.add_trace(go.Scatter(
+            x=list(range(1, n + 1)), y=ds['score'],
+            mode='lines+markers',
+            line=dict(color=T.ACCENT, width=2),
+            marker=dict(size=9, color=dot_colors, line=dict(color=T.BG, width=1)),
+            hovertemplate='Call #%{x}<br>Score: %{y}/10<extra></extra>'
+        ), row=2, col=1)
+
+        fig.update_xaxes(title_text="Call #", row=2, col=1)
+        fig.update_yaxes(title_text="Score", range=[0, 11], row=2, col=1)
+
+    # 4. Objection Bars
+    if 'objection_type' in df.columns:
+        oj = df['objection_type'].value_counts()
+        fig.add_trace(go.Bar(
+            x=oj.index.tolist(), y=oj.values.tolist(),
+            marker=dict(color=T.PALETTE[:len(oj)],
+                        line=dict(color=T.BG, width=1)),
+            text=oj.values.tolist(), textposition='outside',
+            textfont=dict(size=12, color=T.TEXT),
+            hovertemplate='%{x}: %{y} times<extra></extra>'
+        ), row=2, col=2)
+        fig.update_xaxes(title_text="Objection", row=2, col=2)
+        fig.update_yaxes(title_text="Count", row=2, col=2)
+
+    # Summary banner at top
+    fig.add_annotation(
+        x=0.5, y=1.08, xref='paper', yref='paper', showarrow=False,
+        text=(f"<b>{total}</b> calls  ·  "
+              f"<b style='color:{wr_color}'>{win_rate:.0f}%</b> win rate  ·  "
+              f"<b>{avg_score:.1f}</b>/10 avg score"),
+        font=dict(size=14, color=T.TEXT2)
+    )
+
+    return _base(fig, height=680, showlegend=False,
+                 margin=dict(l=55, r=40, t=100, b=50),
+                 title=_title("📊 Sales Performance at a Glance",
+                              "Your overall simulation results"))
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# 12. INSIGHTS HTML PANEL
+# ═══════════════════════════════════════════════════════════════════════
 
 def generate_insights_html(insights: Dict[str, Any]) -> str:
-    """Generate HTML for insights display."""
     if not insights or 'recommendations' not in insights:
-        return "<p style='color: #64748b;'>Run a simulation to see insights.</p>"
-    
-    html = """
-    <div style='font-family: Inter, sans-serif; color: #f8fafc;'>
-    """
-    
-    # Overall Score
+        return f"<p style='color: {T.TEXT3};'>Run a simulation to see insights.</p>"
+
+    html = f"<div style='font-family: {T.FONT}; color: {T.TEXT};'>"
+
+    # Grade Card
     if 'overall_score' in insights:
-        score = insights['overall_score']
-        grade_colors = {'A': '#10b981', 'B': '#3b82f6', 'C': '#f59e0b', 'D': '#f97316', 'F': '#ef4444'}
-        grade = score.get('grade', 'N/A')
-        
+        sc = insights['overall_score']
+        grade = sc.get('grade', 'N/A')
+        grade_colors = {'A': T.WIN, 'B': T.INFO, 'C': T.WARN, 'D': '#fb923c', 'F': T.LOSS}
+        grade_labels = {
+            'A': 'Excellent — strong close potential',
+            'B': 'Good — minor improvements possible',
+            'C': 'Average — needs targeted coaching',
+            'D': 'Below average — review fundamentals',
+            'F': 'Poor — significant rethink needed'
+        }
+        gc = grade_colors.get(grade, T.TEXT)
+        gl = grade_labels.get(grade, '')
+        pts = sc.get('score', 0)
+
         html += f"""
-        <div style='text-align: center; margin-bottom: 20px; padding: 20px; 
-                    background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(139,92,246,0.2));
-                    border-radius: 12px; border: 1px solid rgba(139,92,246,0.3);'>
-            <div style='font-size: 48px; font-weight: bold; color: {grade_colors.get(grade, "#fff")};'>
-                {grade}
-            </div>
-            <div style='font-size: 24px; color: #f8fafc;'>Score: {score.get('score', 0)}/100</div>
-        </div>
-        """
-    
+        <div style='text-align:center; margin-bottom:20px; padding:22px;
+                    background: linear-gradient(135deg, {T.SURFACE}, {T.BG});
+                    border-radius:14px; border:1px solid {T.BORDER};'>
+            <div style='font-size:52px; font-weight:800; color:{gc};
+                        letter-spacing:-2px;'>{grade}</div>
+            <div style='font-size:20px; color:{T.TEXT}; margin-top:4px;'>{pts}/100 points</div>
+            <div style='font-size:12px; color:{T.TEXT2}; margin-top:6px;'>{gl}</div>
+        </div>"""
+
     # Win Probability
     if 'win_probability' in insights:
         wp = insights['win_probability']
         prob = wp.get('win_probability', 0) * 100
-        prob_color = '#10b981' if prob > 65 else '#f59e0b' if prob > 35 else '#ef4444'
-        
+        if prob > 65:
+            pc, pl = T.WIN, "High likelihood of booking a meeting"
+        elif prob > 35:
+            pc, pl = T.WARN, "Could go either way — depends on follow-up"
+        else:
+            pc, pl = T.LOSS, "Unlikely to convert without strategy change"
+
         html += f"""
-        <div style='margin-bottom: 20px; padding: 15px; background: rgba(30,30,46,0.8); 
-                    border-radius: 8px; border-left: 4px solid {prob_color};'>
-            <div style='font-size: 14px; color: #64748b;'>Win Probability</div>
-            <div style='font-size: 28px; font-weight: bold; color: {prob_color};'>{prob:.1f}%</div>
-            <div style='font-size: 12px; color: #64748b;'>Confidence: {wp.get('confidence', 'low').title()}</div>
-        </div>
-        """
-    
-    # Recommendations
+        <div style='margin-bottom:18px; padding:16px; background:{T.SURFACE};
+                    border-radius:10px; border-left:4px solid {pc};'>
+            <div style='font-size:11px; color:{T.TEXT3}; text-transform:uppercase;
+                        letter-spacing:0.5px;'>Win Probability</div>
+            <div style='font-size:32px; font-weight:700; color:{pc};
+                        margin:4px 0;'>{prob:.0f}%</div>
+            <div style='font-size:12px; color:{T.TEXT2};'>{pl}</div>
+            <div style='font-size:11px; color:{T.TEXT3}; margin-top:6px;'>
+                Confidence: {wp.get('confidence', 'low').upper()}</div>
+        </div>"""
+
+    # Recommendations (numbered, actionable)
     if 'recommendations' in insights:
-        html += """
-        <div style='margin-bottom: 15px;'>
-            <div style='font-size: 16px; font-weight: 600; color: #f8fafc; margin-bottom: 10px;'>
-                💡 Recommendations
-            </div>
-        """
-        for rec in insights['recommendations']:
+        html += f"""
+        <div style='margin-bottom:15px;'>
+            <div style='font-size:15px; font-weight:700; color:{T.TEXT};
+                        margin-bottom:12px; letter-spacing:0.3px;'>
+                💡 What to do differently next time
+            </div>"""
+        for i, rec in enumerate(insights['recommendations'], 1):
             html += f"""
-            <div style='padding: 10px; margin-bottom: 8px; background: rgba(99,102,241,0.1); 
-                        border-radius: 6px; font-size: 14px; color: #e2e8f0;'>
-                {rec}
-            </div>
-            """
+            <div style='padding:12px 14px; margin-bottom:8px; background:{T.SURFACE};
+                        border-radius:8px; font-size:13px; color:{T.TEXT};
+                        border-left:3px solid {T.ACCENT}; line-height:1.5;'>
+                <span style='color:{T.ACCENT}; font-weight:700;'>{i}.</span> {rec}
+            </div>"""
         html += "</div>"
-    
+
     html += "</div>"
     return html

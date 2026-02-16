@@ -61,140 +61,193 @@ print(f"[LAUNCH] DeepMost Agentic SDR Premium v2.0 | {_provider_label} (Gradio: 
 # CUSTOM CSS FOR PREMIUM LOOK
 # ============================================================================
 CUSTOM_CSS = """
-/* Premium Dark Theme */
+/* ═══════════════════════════════════════════════════════════
+   DEEP NAVY THEME — Unified Color System
+   Background : #0f172a
+   Surface    : #1e293b
+   Border     : #334155
+   Accent     : #818cf8  (soft indigo)
+   Win/Success: #34d399  (emerald)
+   Loss/Danger: #fb7185  (rose)
+   Warning    : #fbbf24  (amber)
+   Info       : #60a5fa  (sky blue)
+   ═══════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ─── Global ──────────────────────────────────────────────── */
 .gradio-container {
-    background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%) !important;
+    background: #0f172a !important;
     min-height: 100vh;
+    font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif !important;
+    color: #f1f5f9;
 }
 
-/* Header Styling */
+/* Dark panels & inputs */
+.gradio-container .gr-panel,
+.gradio-container .gr-box,
+.gradio-container textarea,
+.gradio-container input[type="text"] {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+    color: #f1f5f9 !important;
+}
+
+/* ─── Header ──────────────────────────────────────────────── */
 .main-header {
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(90deg, #818cf8, #c084fc);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 2.5rem !important;
     font-weight: 800 !important;
     text-align: center;
-    margin-bottom: 0.5rem !important;
+    margin-bottom: 0.3rem !important;
+    letter-spacing: -0.5px;
 }
 
 .sub-header {
-    color: #8b9dc3 !important;
+    color: #94a3b8 !important;
     text-align: center;
-    font-size: 1.1rem !important;
-    margin-bottom: 2rem !important;
+    font-size: 1.05rem !important;
+    margin-bottom: 1.8rem !important;
 }
 
-/* Card Styling */
+/* ─── Cards ───────────────────────────────────────────────── */
 .card-container {
-    background: rgba(30, 30, 46, 0.8) !important;
-    border: 1px solid rgba(139, 92, 246, 0.2) !important;
-    border-radius: 16px !important;
+    background: #1e293b !important;
+    border: 1px solid #334155 !important;
+    border-radius: 14px !important;
     padding: 20px !important;
-    backdrop-filter: blur(10px) !important;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
 }
 
-/* Button Styling */
+/* ─── Primary Button ──────────────────────────────────────── */
 .primary-btn {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    background: linear-gradient(135deg, #818cf8, #a78bfa) !important;
     border: none !important;
-    color: white !important;
-    font-weight: 600 !important;
-    padding: 12px 24px !important;
+    color: #0f172a !important;
+    font-weight: 700 !important;
+    padding: 12px 28px !important;
     border-radius: 10px !important;
-    transition: all 0.3s ease !important;
+    font-size: 0.95rem !important;
+    letter-spacing: 0.3px;
+    transition: all 0.25s ease !important;
 }
 
 .primary-btn:hover {
     transform: translateY(-2px) !important;
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4) !important;
+    box-shadow: 0 6px 24px rgba(129, 140, 248, 0.35) !important;
 }
 
-/* Chatbot Styling */
+/* ─── Chatbot ─────────────────────────────────────────────── */
 .chatbot-container {
-    border-radius: 16px !important;
+    border-radius: 14px !important;
     overflow: hidden !important;
+    border: 1px solid #334155 !important;
 }
 
-/* Tab Styling */
+/* ─── Tabs ────────────────────────────────────────────────── */
 .tab-nav button {
     background: transparent !important;
-    color: #8b9dc3 !important;
+    color: #94a3b8 !important;
     border-bottom: 2px solid transparent !important;
-    font-weight: 500 !important;
-    transition: all 0.3s ease !important;
+    font-weight: 600 !important;
+    transition: all 0.25s ease !important;
+    font-size: 0.95rem !important;
 }
 
 .tab-nav button.selected {
-    color: #667eea !important;
-    border-bottom: 2px solid #667eea !important;
+    color: #818cf8 !important;
+    border-bottom: 2px solid #818cf8 !important;
 }
 
-/* Metric Cards */
+/* ─── Metric Cards ────────────────────────────────────────── */
 .metric-card {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1)) !important;
-    border: 1px solid rgba(139, 92, 246, 0.3) !important;
+    background: #1e293b !important;
+    border: 1px solid #334155 !important;
     border-radius: 12px !important;
     padding: 16px !important;
     text-align: center !important;
 }
 
-.metric-value {
-    font-size: 2rem !important;
+.metric-card label {
+    color: #94a3b8 !important;
+    font-size: 0.85rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+.metric-card input {
+    font-size: 1.6rem !important;
     font-weight: 700 !important;
-    color: #f8fafc !important;
+    color: #f1f5f9 !important;
+    text-align: center !important;
 }
 
-.metric-label {
-    font-size: 0.9rem !important;
-    color: #64748b !important;
-}
+/* ─── Status Badges ───────────────────────────────────────── */
+.status-success { background: rgba(52, 211, 153, 0.15); color: #34d399; }
+.status-warning { background: rgba(251, 191, 36, 0.15); color: #fbbf24; }
+.status-danger  { background: rgba(251, 113, 133, 0.15); color: #fb7185; }
 
-/* Status Badge */
-.status-badge {
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-}
-
-.status-success { background: rgba(16, 185, 129, 0.2); color: #10b981; }
-.status-warning { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
-.status-danger { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
-
-/* Insights Panel */
+/* ─── Insights Panel ──────────────────────────────────────── */
 .insights-panel {
-    background: rgba(30, 30, 46, 0.9) !important;
+    background: #1e293b !important;
     border-radius: 12px !important;
     padding: 20px !important;
-    border: 1px solid rgba(99, 102, 241, 0.3) !important;
+    border: 1px solid #334155 !important;
 }
 
-/* Provider Badge */
+/* ─── Provider Badge ──────────────────────────────────────── */
 .provider-badge {
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(99, 102, 241, 0.15)) !important;
-    border: 1px solid rgba(16, 185, 129, 0.3) !important;
+    background: #1e293b !important;
+    border: 1px solid #334155 !important;
     border-radius: 10px !important;
     padding: 8px 16px !important;
     text-align: center !important;
     font-size: 0.9rem !important;
 }
 
-/* Animations */
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+.provider-badge input {
+    color: #34d399 !important;
+    font-weight: 600 !important;
 }
 
-.loading { animation: pulse 1.5s infinite; }
-
-/* Plot containers */
+/* ─── Plot Containers ─────────────────────────────────────── */
 .plotly-graph-div {
     border-radius: 12px !important;
     overflow: hidden !important;
 }
+
+/* Give Gradio plot wrappers a visible card frame */
+.gr-plot {
+    background: #1e293b !important;
+    border: 1px solid #334155 !important;
+    border-radius: 14px !important;
+    padding: 8px !important;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* ─── Accordion ───────────────────────────────────────────── */
+.gradio-accordion {
+    border: 1px solid #334155 !important;
+    border-radius: 10px !important;
+    background: #1e293b !important;
+}
+
+/* ─── Scrollbar (webkit) ──────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0f172a; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+/* ─── Smooth animations ──────────────────────────────────── */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+.loading { animation: pulse 1.5s infinite; }
+
+* { transition: background-color 0.15s ease, border-color 0.15s ease; }
 """
 
 # ============================================================================
