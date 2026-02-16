@@ -28,16 +28,16 @@ os.makedirs("data/processed", exist_ok=True)
 
 # --- CONFIGURATION ---
 TARGET_SITES = [
-    "https://www.microsoft.com",
-    "https://www.oracle.com",
-    "https://www.sap.com",
-    "https://www.workday.com",
-    "https://www.servicenow.com",
-    "https://www.tableau.com",
-    "https://www.databricks.com",
-    "https://www.splunk.com",
-    "https://www.twilio.com",
-    "https://www.docusign.com"
+"https://www.adobe.com",
+ "https://www.intuit.com",
+ "https://www.palantir.com",
+ "https://www.mongodb.com",
+ "https://www.okta.com",
+ "https://www.crowdstrike.com",
+ "https://www.canva.com",
+ "https://www.figma.com",
+ "https://www.box.com",
+ "https://www.uipath.com"
 ]
 
 # Dynamic inter-site delay based on provider
