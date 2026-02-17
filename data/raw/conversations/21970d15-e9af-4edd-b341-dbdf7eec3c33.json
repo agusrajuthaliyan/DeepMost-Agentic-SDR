@@ -1,0 +1,82 @@
+{
+  "simulation_id": "21970d15-e9af-4edd-b341-dbdf7eec3c33",
+  "timestamp": "2026-02-17T17:44:46.104303",
+  "target_url": "https://www.zapier.com",
+  "company_context": "Zapier: Automate AI Workflows, Agents, and Apps We're the only automation platform to make it to the Super Bowl. → Skip to content Log in Sign up Transformative AI for every team Zapier unlocks transformative AI to safely scale workflows, agents, and MCP with the world's most connected ecosystem of 8,000+ integrations. Start free with email Start free with Google Soc 2 (type II) - GDPR - CCPA GDPR and CCPA compliant Trusted by the world’s best companies Trusted by the world’s best companies Your complete toolkit for AI automation AI Workflows AI Agents AI Chatbots Tables Forms Canvas Enterprise Functions 8,000 apps AI Workflows Automate advanced workflows with the full building power of Zapier. Explore AI Workflows Get started fast with pre-built templates Let AI handle your IT support tickets Turn sales calls into coaching moments See more templates → CUSTOMER STORIES For the Fortune 500 and first-time founders Teams use Zapier in boardrooms, spare rooms, and rooms where AI has ROI. With Agents, I’m getting insights I didn’t even know to look for. They flag when something’s off, answer questions in plain language, and save me hours every week. — Spencer Siviglia , Director of Operations at Toyota of Orlando 30,000+ lead records managed 20+ hours saved weekly Read full story What used to be overwhelming is now scalable. With Zapier, I don’t have to choose between doing good work and doing a lot of it. — Andrew Harding , VP of Marketing and Content Partnerships at Slate 2,000+ new leads a month 100+ hours saved Read full story Zapier lets us spin up and test automations in hours, not full engineering sprints. — Korey Marciniak , Senior Manager of Customer Support Strategy and Operations 13% of support escalations fully automated with Zapier 10 min saved per escalation Read full story Because of automation, we've seen about a $1 million increase in potential revenue. Our reps can now focus purely on closing deals—not admin. — Jacob Sirrs , Marketing Operations Specialist at Vendasta $1M In recovered pipeline using automation 282 Days per year of manual work removed Read full story Zapier contributes to an overhead savings of around $500,000+ on an annual basis — Tyler Diogo , Operations Manager, Arden Insurance Services 34,000+ Work hours automated $150m Zapier helps collect $150m in payments / year Read full story With the help of automation, Contractor Appointments has been able to help our clients report over $134 million in revenue. — Ben Leone , CTO, Contractor Appointments $300k increase in annual revenue with automation 80-90% top-of-funnel leads handled automatically Read full story See more customer stories Scale AI the Easy Way No AI hype here. Just results. 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 , 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 , 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 AI tasks automated on Zapier (and counting) Jan 2023 Today Zapier is where innovators put AI to work.",
+  "conversation": [
+    {
+      "turn": 1,
+      "speaker": "Seller",
+      "message": "Hi, my name is Alex and I'm reaching out from DeepData AI. We're a data processing solution that helps companies like yours streamline their workflows and unlock insights from their data. I saw that your company is using Zapier for automation, and I think our solution could be a great complement to that.",
+      "word_count": 53,
+      "char_count": 305
+    },
+    {
+      "turn": 1,
+      "speaker": "Buyer",
+      "message": "(sighing) Another sales call. What makes you think we need another data processing solution? We're already using Zapier for automation, and it's working out pretty well for us.",
+      "word_count": 28,
+      "char_count": 176
+    },
+    {
+      "turn": 2,
+      "speaker": "Seller",
+      "message": "I completely understand your skepticism, but I'd like to highlight that while Zapier is great for automation, it's not necessarily optimized for deep data analysis. Our solution, DeepData AI, is specifically designed to handle large datasets and provide advanced analytics capabilities that can help you uncover new insights and opportunities. For example, we've worked with companies like Toyota of Orlando, who were able to manage over 30,000 lead records and save 20+ hours weekly with our solution.",
+      "word_count": 77,
+      "char_count": 502
+    },
+    {
+      "turn": 2,
+      "speaker": "Buyer",
+      "message": "(still skeptical) I'm not sure I buy that. We've already invested a lot in Zapier, and I'm not convinced that we need to add another tool to the mix. What makes you think your solution is worth the additional cost and complexity?",
+      "word_count": 42,
+      "char_count": 229
+    },
+    {
+      "turn": 3,
+      "speaker": "Seller",
+      "message": "I understand your concerns about cost and complexity, but I'd like to address those directly. Our solution is designed to be highly scalable and flexible, so it can grow with your company's needs. Additionally, we offer a free trial and a tiered pricing model, so you can start small and scale up as needed. In terms of ROI, our customers have seen significant benefits, such as the $1 million increase in potential revenue that Jacob Sirrs from Marketing Operations saw after implementing our solution.",
+      "word_count": 84,
+      "char_count": 503
+    },
+    {
+      "turn": 3,
+      "speaker": "Buyer",
+      "message": "(somewhat intrigued) Okay, I'll give you a few minutes more. But can you walk me through a specific example of how DeepData AI would integrate with our existing Zapier setup, and what kind of benefits we could expect to see?",
+      "word_count": 40,
+      "char_count": 224
+    },
+    {
+      "turn": 4,
+      "speaker": "Seller",
+      "message": "Absolutely. Let me give you an example. One of our customers, a marketing agency, was using Zapier to automate their lead generation process, but they were struggling to analyze the large amounts of data they were collecting. We integrated DeepData AI with their Zapier setup, and they were able to gain deeper insights into their customer behavior and preferences. As a result, they were able to optimize their marketing campaigns and see a significant increase in conversions. I'd be happy to set up a demo to show you how this could work for your company.",
+      "word_count": 95,
+      "char_count": 558
+    },
+    {
+      "turn": 4,
+      "speaker": "Buyer",
+      "message": "(thoughtfully) Okay, I think I'd like to see that demo. But I have to warn you, we're a pretty technical team, so you'll need to be prepared to answer some tough questions about your solution and how it integrates with Zapier.",
+      "word_count": 41,
+      "char_count": 226
+    }
+  ],
+  "analysis": {
+    "raw": "Score: 5\nOutcome: Success\nKey_Objection: Unknown\nFeedback: Auto-generated from batch pipeline. Sentiment: Positive",
+    "parsed": {
+      "score": 5,
+      "outcome": "Success",
+      "key_objection": "Unknown",
+      "feedback": "Auto-generated from batch pipeline. Sentiment: Positive"
+    }
+  },
+  "metrics": {
+    "num_turns": 4,
+    "total_seller_words": 309,
+    "total_buyer_words": 151,
+    "avg_seller_words_per_turn": 77.25,
+    "avg_buyer_words_per_turn": 37.75,
+    "word_ratio_seller_buyer": 2.05,
+    "total_conversation_length": 460
+  }
+}

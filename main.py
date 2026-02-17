@@ -28,7 +28,7 @@ os.makedirs("data/processed", exist_ok=True)
 
 # --- CONFIGURATION ---
 TARGET_SITES = [
-"https://www.adobe.com", "https://www.servicenow.com", "https://www.intuit.com", "https://github.com", "https://monday.com", "https://www.miro.com", "https://www.airtable.com", "https://www.paloaltonetworks.com", "https://www.intel.com", "https://www.cisco.com"
+"https://aws.amazon.com", "https://www.vmware.com", "https://www.redhat.com", "https://www.hashicorp.com", "https://www.grafana.com", "https://www.elastic.co", "https://www.dynatrace.com", "https://www.newrelic.com", "https://www.cloudflare.com", "https://www.fastly.com"
 ]
 
 # Dynamic inter-site delay based on provider
