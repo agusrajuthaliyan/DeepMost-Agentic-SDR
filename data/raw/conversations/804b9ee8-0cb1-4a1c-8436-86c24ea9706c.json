@@ -1,0 +1,75 @@
+{
+  "simulation_id": "804b9ee8-0cb1-4a1c-8436-86c24ea9706c",
+  "timestamp": "2026-02-17T17:36:04.294655",
+  "target_url": "https://www.intel.com",
+  "company_context": "Access Denied Access Denied You don't have permission to access \"http://www.intel.com/\" on this server. Reference #18.17392017.1771329962.65eaed2 https://errors.edgesuite.net/18.17392017.1771329962.65eaed2",
+  "conversation": [
+    {
+      "turn": 1,
+      "speaker": "Seller",
+      "message": "Hi, my name is Alex and I'm reaching out from DeepData AI. We're a data processing solutions company and I came across your company while researching potential partners. I noticed you're experiencing some issues with accessing certain websites, such as Intel's website, and I think our solution could help mitigate those problems by optimizing your data flow and reducing latency.",
+      "word_count": 60,
+      "char_count": 380
+    },
+    {
+      "turn": 1,
+      "speaker": "Buyer",
+      "message": "(skeptical) Oh, you mean the \"Access Denied\" error we've been getting? That's just a minor issue with our proxy server. I'm not sure how your data processing solution would help with that. We've already got a team looking into it.",
+      "word_count": 40,
+      "char_count": 230
+    },
+    {
+      "turn": 2,
+      "speaker": "Seller",
+      "message": "I understand your concern, but our solution has helped similar companies resolve issues like this by streamlining their data pipelines and improving network efficiency. For instance, one of our clients was experiencing similar access issues due to their outdated data infrastructure, and after implementing DeepData AI, they saw a significant reduction in errors and an increase in overall system performance. Would you be open to exploring how our solution could help your team resolve this issue more efficiently?",
+      "word_count": 78,
+      "char_count": 515
+    },
+    {
+      "turn": 2,
+      "speaker": "Buyer",
+      "message": "(still skeptical) I'm not convinced. We've got a lot of custom-built solutions in place, and I'm not sure I want to introduce another vendor into the mix. What makes you think your solution is going to be any better than what we've already got? And how would you even integrate with our existing systems?",
+      "word_count": 54,
+      "char_count": 304
+    },
+    {
+      "turn": 3,
+      "speaker": "Seller",
+      "message": "That's a fair question. Our solution is designed to be highly adaptable and can integrate with a wide range of existing systems. We've worked with companies that have complex, custom-built infrastructures, and we've been able to seamlessly integrate our solution to enhance their data processing capabilities. I'd be happy to set up a demo to show you exactly how DeepData AI can work with your systems and address your specific pain points. Would that be something you'd be interested in?",
+      "word_count": 80,
+      "char_count": 489
+    },
+    {
+      "turn": 3,
+      "speaker": "Buyer",
+      "message": "(somewhat intrigued) Okay, fine. I'll take a look. But like I said, we're not looking to add any more complexity to our systems. If your solution can't demonstrate clear value and ease of integration, then I'm not interested. When were you thinking of scheduling this demo?",
+      "word_count": 46,
+      "char_count": 273
+    },
+    {
+      "turn": 4,
+      "speaker": "Seller",
+      "message": "How about next Wednesday at 2 PM? I'll make sure to have one of our technical experts on the call to answer any questions you may have and provide a personalized walkthrough of our solution. And I want to assure you, we'll work closely with your team to ensure a smooth integration process and provide ongoing support to ensure you're getting the most out of our solution.",
+      "word_count": 67,
+      "char_count": 372
+    }
+  ],
+  "analysis": {
+    "raw": "Score: 5\nOutcome: Success\nKey_Objection: Unknown\nFeedback: Auto-generated from batch pipeline. Sentiment: Neutral",
+    "parsed": {
+      "score": 5,
+      "outcome": "Success",
+      "key_objection": "Unknown",
+      "feedback": "Auto-generated from batch pipeline. Sentiment: Neutral"
+    }
+  },
+  "metrics": {
+    "num_turns": 3,
+    "total_seller_words": 285,
+    "total_buyer_words": 140,
+    "avg_seller_words_per_turn": 71.25,
+    "avg_buyer_words_per_turn": 46.67,
+    "word_ratio_seller_buyer": 2.04,
+    "total_conversation_length": 425
+  }
+}
