@@ -1,0 +1,82 @@
+{
+  "simulation_id": "16589710-88a2-44eb-9d92-4f770d4a9f5b",
+  "timestamp": "2026-02-20T23:53:10.761596",
+  "target_url": "https://www.intercom.com",
+  "company_context": "The AI customer service company",
+  "conversation": [
+    {
+      "turn": 1,
+      "speaker": "Seller",
+      "message": "Hi, my name is Alex and I'm reaching out from DeepData AI. We're a data processing solution that helps companies like yours streamline their customer service operations. Can you tell me a little bit about your current data processing setup?",
+      "word_count": 40,
+      "char_count": 240
+    },
+    {
+      "turn": 1,
+      "speaker": "Buyer",
+      "message": "(sighs) Look, we're not really in the market for a new data processing solution. We've got a system in place that works for us, and I'm not sure what benefits your product would bring to the table.",
+      "word_count": 37,
+      "char_count": 197
+    },
+    {
+      "turn": 2,
+      "speaker": "Seller",
+      "message": "I completely understand. However, our solution has been shown to increase efficiency by up to 30% and reduce costs by up to 25%. We've had great success with similar companies in your industry. Would you be open to hearing more about how DeepData AI could specifically help your company?",
+      "word_count": 49,
+      "char_count": 287
+    },
+    {
+      "turn": 2,
+      "speaker": "Buyer",
+      "message": "(skeptical) I'm not sure. We're currently locked into a contract with our existing provider, and I'm not sure we have the budget to make a change right now. Plus, I'd need to talk to our procurement team to see if we even have the authority to make a switch.",
+      "word_count": 49,
+      "char_count": 258
+    },
+    {
+      "turn": 3,
+      "speaker": "Seller",
+      "message": "I understand the concerns about budget and authority. However, I'd like to offer a customized demo to show you exactly how DeepData AI can address your specific pain points. We've worked with companies in similar situations and have been able to help them negotiate with their existing providers or find ways to make the transition work within their budget.",
+      "word_count": 59,
+      "char_count": 357
+    },
+    {
+      "turn": 3,
+      "speaker": "Buyer",
+      "message": "(still hesitant) I appreciate the offer, but like I said, we're just not prioritizing this right now. We've got a lot on our plate, and I don't think we're going to be making any changes to our data processing setup in the near future.",
+      "word_count": 44,
+      "char_count": 235
+    },
+    {
+      "turn": 4,
+      "speaker": "Seller",
+      "message": "I understand, and I respect your priorities. However, I'd like to send you a brief follow-up email with some case studies and testimonials from our existing clients. Sometimes, seeing the success stories of similar companies can help spark interest and make a project like this more of a priority.",
+      "word_count": 49,
+      "char_count": 297
+    },
+    {
+      "turn": 4,
+      "speaker": "Buyer",
+      "message": "(firmly) No, that's okay. I appreciate the follow-up, but we're just not interested. Please don't send any further emails or make any more calls. We're not going to be moving forward with DeepData AI.",
+      "word_count": 34,
+      "char_count": 200
+    }
+  ],
+  "analysis": {
+    "raw": "Score: 2\nOutcome: Failure\nKey_Objection: Timing\nFeedback: The seller should have more aggressively addressed the buyer's initial hesitation and explored potential pain points earlier in the conversation to build more interest and momentum. Sentiment: Negative",
+    "parsed": {
+      "score": 2,
+      "outcome": "Failure",
+      "key_objection": "Timing",
+      "feedback": "The seller should have more aggressively addressed the buyer's initial hesitation and explored potential pain points earlier in the conversation to build more interest and momentum. Sentiment: Negative"
+    }
+  },
+  "metrics": {
+    "num_turns": 4,
+    "total_seller_words": 197,
+    "total_buyer_words": 164,
+    "avg_seller_words_per_turn": 49.25,
+    "avg_buyer_words_per_turn": 41.0,
+    "word_ratio_seller_buyer": 1.2,
+    "total_conversation_length": 361
+  }
+}

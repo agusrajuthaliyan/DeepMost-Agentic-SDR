@@ -28,12 +28,7 @@ os.makedirs("data/processed", exist_ok=True)
 
 # --- CONFIGURATION ---
 TARGET_SITES = [
-"https://www.linode.com", "https://www.vultr.com", "https://www.hetzner.com", "https://www.ovhcloud.com", "https://www.nginx.com",
-"https://www.apache.org", "https://www.mysql.com", "https://www.postgresql.org", "https://www.jenkins.io", "https://www.docker.com",
-"https://www.kubernetes.io", "https://www.terraform.io", "https://www.ansible.com", "https://www.gitlab.com", "https://www.bitbucket.org",
-"https://www.confluence.com", "https://www.basecamp.com", "https://www.crunchbase.com", "https://www.glassdoor.com", "https://www.builtwith.com",
-"https://www.g2.com", "https://www.capterra.com", "https://www.trustradius.com", "https://www.similarweb.com", "https://www.statista.com",
-"https://www.deel.com", "https://www.gusto.com", "https://www.rippling.com", "https://www.lattice.com", "https://www.cultureamp.com"
+"https://www.salesforce.com", "https://www.hubspot.com", "https://www.freshworks.com", "https://www.monday.com", "https://www.clickup.com", "https://www.atlassian.com", "https://www.slack.com", "https://www.datadoghq.com", "https://www.newrelic.com", "https://www.splunk.com", "https://www.cloudflare.com", "https://www.okta.com", "https://www.digitalocean.com", "https://www.scaleway.com", "https://www.mongodb.com", "https://www.snowflake.com", "https://www.twilio.com", "https://www.sendgrid.com", "https://www.mailchimp.com", "https://www.intercom.com", "https://www.zendesk.com", "https://www.pendo.io", "https://www.gong.io", "https://www.zoominfo.com", "https://www.lusha.com", "https://www.cognism.com", "https://www.6sense.com", "https://www.demandbase.com", "https://www.shopify.com", "https://www.bigcommerce.com"
 ]
 
 # Dynamic inter-site delay based on provider

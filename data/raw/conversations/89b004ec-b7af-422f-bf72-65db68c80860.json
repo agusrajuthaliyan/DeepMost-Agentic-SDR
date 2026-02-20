@@ -1,0 +1,96 @@
+{
+  "simulation_id": "89b004ec-b7af-422f-bf72-65db68c80860",
+  "timestamp": "2026-02-20T23:53:56.234760",
+  "target_url": "https://www.cognism.com",
+  "company_context": "Your No. 1 Choice in Premium Sales Intelligence | Cognism Skip to content Right-click to download logo Copy logo to clipboard (png) Copying... Downloading... Copy icon to clipboard (png) Copying... Downloading... Download brand assets Copying... Downloading... Platform Use Cases Sales Marketing RevOps Products Sales Companion Buyer signals Data-as-a-Service Integrations Why Cognism Diamond Data® About our data Compliance See How We Compare Cognism vs Zoominfo Cognism vs Apollo Cognism vs Lusha Cognism vs alternatives Customers Customers Case Studies Customer reviews Resources Education Blog Resources Reports Podcasts Newsletter GTM cheat codes Product Product tour Help centre FAQ Pricing Content spotlight The Demand Gen Playbook Inside Inbound 2026 State of Outbound 2026 Diary of a first-time CMO International Expansion Zone Date-a-vendor SDR Zone CTA Company About us Careers Partnerships Newsroom Log in Book a Demo English Deutsch Français We give you up-to-date, quality data for the companies and decision-makers who matter most Drive intelligent prospecting with insights into your target accounts Boost connect rates by up to 3x* with mobile numbers that work Build pipeline with a platform that is purpose-built for companies selling into EMEA markets Book a demo Watch a demo Trusted by over 4000+ businesses, globally. Why Cognism Data i s different... European strength Mobile phones and emails for the people you want to do business with. With unrivalled European coverage, access millions of B2B contacts with exceptional depth across the UK and EMEA with ease. Keep your outreach focused and your campaigns fuelled with Cognism data. Learn more Diamond Data® Spend less time dialling wrong numbers. Cognism’s phone-verified Diamond Data® is tested, verified, and validated by our team to ensure freshness and accuracy. SDRs spend more time selling and less time researching. Diamond Data® means more time actually speaking to contacts that matter. Learn more Decision-makers The most complete and accurate database for decision-makers in Europe. Reach VP-level and above decision-makers confidently, with GDPR-compliant data that’s continuously refreshed and enriched. With more Do-Not-Call lists checked than any other provider, thousands of global business trust Cognism to enable their reps to prospect safely and confidently. Learn more Signals “We saw ROI in 8 weeks from intent data and direct dials.” George McKenna Head of Cloud Sales at Ultima Diamond Data “Ringing legitimate mobile numbers has hugely increased our speed-to-connect rates.” Shay Khosrowshahi Head of Revenue Operations at YuLife Compliance “We were able to build up a GDPR-compliant database of contacts which we could then start targeting.” Ruth Holmes Chief Marketing Officer at Newable The Cognism Experience Drive best practice, boost efficiency and keep pipeline healthy throughout your organisation with our entire product suite. Sales Companion Plan, define and build a prospecting strategy",
+  "conversation": [
+    {
+      "turn": 1,
+      "speaker": "Seller",
+      "message": "Hi, my name is Alex and I'm reaching out from DeepData AI. We're a data processing solution that helps companies like yours optimize their data management. Can I speak with the CTO, please?",
+      "word_count": 33,
+      "char_count": 189
+    },
+    {
+      "turn": 1,
+      "speaker": "Buyer",
+      "message": "This is John, the CTO. What can I do for you, Alex?",
+      "word_count": 12,
+      "char_count": 51
+    },
+    {
+      "turn": 2,
+      "speaker": "Seller",
+      "message": "Hi John, thanks for taking my call. I understand that your company is currently using Cognism for sales intelligence. We've helped similar companies streamline their data processing and improve their sales outreach. I'd love to explore if our solution can help you as well.",
+      "word_count": 44,
+      "char_count": 273
+    },
+    {
+      "turn": 2,
+      "speaker": "Buyer",
+      "message": "We're actually pretty happy with Cognism. They provide us with quality data and their Diamond Data is top-notch. What makes you think your solution is better?",
+      "word_count": 26,
+      "char_count": 158
+    },
+    {
+      "turn": 3,
+      "speaker": "Seller",
+      "message": "That's great to hear that you're happy with Cognism! However, our solution is more focused on data processing and can help you integrate your existing data sources with Cognism. This can help you get a more complete view of your customers and prospects. We've seen companies like yours reduce their data processing time by up to 50% with our solution.",
+      "word_count": 60,
+      "char_count": 351
+    },
+    {
+      "turn": 3,
+      "speaker": "Buyer",
+      "message": "I'm not sure we need another data processing solution. We've already invested in a few tools and I'm not convinced that yours would be a good fit. Plus, I'm not sure about the cost. What's the pricing like for your solution?",
+      "word_count": 41,
+      "char_count": 224
+    },
+    {
+      "turn": 4,
+      "speaker": "Seller",
+      "message": "I completely understand your concerns, John. Our pricing is competitive with other data processing solutions on the market. We offer a customized pricing plan based on the specific needs of your company. I'd be happy to discuss the details with you and see if we can find a plan that works for you. Would you be open to a quick demo to see how our solution can integrate with your existing tools?",
+      "word_count": 72,
+      "char_count": 396
+    },
+    {
+      "turn": 4,
+      "speaker": "Buyer",
+      "message": "Honestly, Alex, I don't think we're in the market for a new data processing solution right now. We're locked into a contract with one of our existing vendors and I don't have the budget authority to make any changes. I appreciate the offer, but I think we'll have to pass on the demo.",
+      "word_count": 53,
+      "char_count": 284
+    },
+    {
+      "turn": 5,
+      "speaker": "Seller",
+      "message": "I completely understand, John. I appreciate your honesty and I'll make sure to follow up with you in the future to see if anything has changed. Is there anything else I can provide you with in the meantime, such as a case study or a whitepaper on data processing best practices?",
+      "word_count": 51,
+      "char_count": 278
+    },
+    {
+      "turn": 5,
+      "speaker": "Buyer",
+      "message": "No, that's okay, Alex. I think we're all set. Thanks for reaching out and I wish you the best of luck with your product.",
+      "word_count": 24,
+      "char_count": 120
+    }
+  ],
+  "analysis": {
+    "raw": "Score: 4\nOutcome: Failure\nKey_Objection: Authority\nFeedback: The seller should have asked more questions to understand the buyer's current contract and vendors to potentially identify a future opportunity or a different decision-maker. Sentiment: Neutral",
+    "parsed": {
+      "score": 4,
+      "outcome": "Failure",
+      "key_objection": "Authority",
+      "feedback": "The seller should have asked more questions to understand the buyer's current contract and vendors to potentially identify a future opportunity or a different decision-maker. Sentiment: Neutral"
+    }
+  },
+  "metrics": {
+    "num_turns": 5,
+    "total_seller_words": 260,
+    "total_buyer_words": 156,
+    "avg_seller_words_per_turn": 52.0,
+    "avg_buyer_words_per_turn": 31.2,
+    "word_ratio_seller_buyer": 1.67,
+    "total_conversation_length": 416
+  }
+}

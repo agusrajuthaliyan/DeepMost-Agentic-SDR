@@ -1,0 +1,82 @@
+{
+  "simulation_id": "aa59ee0d-e405-4faf-a4cb-72d626204c08",
+  "timestamp": "2026-02-20T23:51:49.625686",
+  "target_url": "https://www.okta.com",
+  "company_context": "Secure Identity for Employees, Customers, and AI | Okta Skip to content Streamcast, Ep. 2: The shadow AI takeover Register now → Free trial Contact us Products Our platforms secure all types of identity from AI agents to your customers, employees, and partners. Free Trial Pricing Release Overview Product Training Agentic AI Security Auth0 for AI Agents ↗ New Okta for AI Agents New Cross App Access Protocol New Identity & Access Management Single Sign-On Adaptive MFA Device Access API Access Management Secure Partner Access Access Gateway Universal Directory Privileged Access Management Privileged Access Identity Threat Detection & Response Identity Security Posture Management Identity Threat Protection Customer Identity & Access Management Auth0 ↗ Okta Customer Identity Identity Governance & Administration Lifecycle Management Identity Governance Integrations Okta Integration Network Secure Identity Integrations Free Trial Pricing Release Overview Product Training Platforms Okta Secure all of your identities within an identity security fabric. Auth0 Ship amazing experiences with enterprise-grade customer identity. Solutions Okta is the neutral, powerful, and extensible platform that puts identity at the heart of your stack. Free Trial Pricing Release Overview Explore All Solutions By Identity Type Workforce Identity Customer Identity ↗ External Identities AI Agent Identities Non-Human Identities Personal Identities By Industry Public Sector Financial Services Healthcare Manufacturing Retail Travel & Hospitality Technology Non-Profit Energy Free Trial Pricing Release Overview Product Training Customer Success Stories Box enforces zero standing privileges with Okta Identity Governance. See full story Resources Webinars Blog Newsroom Customer Stories Identity 101 Events Explore all resources Get Support Support Center Overview Knowledge Base ↗ Product Hubs ↗ Visit support center ↗ Customer Success Success Plans Professional Services Product Training Product Certification Partners See all offerings Community Questions Forum ↗ Discussion Groups ↗ Community Blogs ↗ Okta Ideas ↗ Join Okta Community ↗ Developers Okta and Auth0 deliver flexible, secure access. Build fast with our extensible platforms for customers, workforce, and non-human identities. Free Trial Pricing Release Overview Product Training Okta Platform Okta Integration Network Developer Center ↗ Product Releases Product Documentation ↗ Community ↗ Okta Platform Status ↗ Auth0 Platform Auth0 Marketplace ↗ Developer Center ↗ Community ↗ Knowledge Base ↗ Auth0 Status ↗ Free Trial Pricing Release Overview Product Training Release Overview Explore our quarterly product Release Overview updates. See the latest announcements Company Our platforms secure all types of identity from AI agents to your customers, employees, and partners. Contact Us About Okta About Us Leadership Our Customers Newsroom Investors ↗ Okta Ventures Careers & community Careers Talent, Connection, & Community Values & Impact ",
+  "conversation": [
+    {
+      "turn": 1,
+      "speaker": "Seller",
+      "message": "Hi, my name is John and I'm reaching out from DeepData AI. We're a data processing solution that helps companies like yours streamline their data operations and gain valuable insights. I came across Okta and saw that you're invested in securing identities for your employees, customers, and AI agents. I'd love to explore how our solution can complement your existing infrastructure.",
+      "word_count": 61,
+      "char_count": 383
+    },
+    {
+      "turn": 1,
+      "speaker": "Buyer",
+      "message": "(skeptical) Okay, what makes you think we need another data processing solution? We already have a few tools in place, and I'm not sure we're looking to add more complexity to our stack.",
+      "word_count": 33,
+      "char_count": 186
+    },
+    {
+      "turn": 2,
+      "speaker": "Seller",
+      "message": "I completely understand your concern about complexity. However, our solution is designed to integrate seamlessly with existing systems, including Okta. We've worked with several companies in the identity security space and have seen significant benefits in terms of data efficiency and security. For example, one of our clients was able to reduce their data processing time by 30% after implementing our solution.",
+      "word_count": 62,
+      "char_count": 413
+    },
+    {
+      "turn": 2,
+      "speaker": "Buyer",
+      "message": "(still skeptical) That sounds interesting, but we're in the middle of a major project right now and I'm not sure we have the bandwidth to evaluate new solutions. Plus, I'm not sure what the ROI would be on a new data processing tool. Can you tell me more about your pricing?",
+      "word_count": 51,
+      "char_count": 274
+    },
+    {
+      "turn": 3,
+      "speaker": "Seller",
+      "message": "Our pricing is competitive, and we offer customized plans based on the specific needs of each company. I'd be happy to provide you with more information on our pricing model. However, I want to emphasize that our solution is designed to provide long-term value and cost savings, rather than just being a short-term expense. We've seen companies like yours achieve significant returns on investment by streamlining their data operations and improving their data security.",
+      "word_count": 74,
+      "char_count": 470
+    },
+    {
+      "turn": 3,
+      "speaker": "Buyer",
+      "message": "(firmly) Look, I appreciate the pitch, but I really don't think we're in a position to consider new solutions right now. We're locked into a contract with one of your competitors, and even if we weren't, I'm not sure we'd be willing to take on the integration and training costs associated with a new tool. I think we'll have to pass on this for now.",
+      "word_count": 65,
+      "char_count": 350
+    },
+    {
+      "turn": 4,
+      "speaker": "Seller",
+      "message": "I completely understand, and I appreciate your honesty. If you're willing, I'd like to send you some information on our solution and check in with you in a few months to see if your priorities have shifted.",
+      "word_count": 37,
+      "char_count": 206
+    },
+    {
+      "turn": 4,
+      "speaker": "Buyer",
+      "message": "(definitively) No, that's okay. We're not interested in pursuing this further at this time. Thank you for reaching out, but I think we'll have to decline your offer.",
+      "word_count": 28,
+      "char_count": 165
+    }
+  ],
+  "analysis": {
+    "raw": "Score: 2\nOutcome: Failure\nKey_Objection: Timing\nFeedback: The seller should have more thoroughly qualified the buyer's current projects and priorities before pitching the solution to avoid being dismissed due to poor timing. Sentiment: Negative",
+    "parsed": {
+      "score": 2,
+      "outcome": "Failure",
+      "key_objection": "Timing",
+      "feedback": "The seller should have more thoroughly qualified the buyer's current projects and priorities before pitching the solution to avoid being dismissed due to poor timing. Sentiment: Negative"
+    }
+  },
+  "metrics": {
+    "num_turns": 4,
+    "total_seller_words": 234,
+    "total_buyer_words": 177,
+    "avg_seller_words_per_turn": 58.5,
+    "avg_buyer_words_per_turn": 44.25,
+    "word_ratio_seller_buyer": 1.32,
+    "total_conversation_length": 411
+  }
+}
