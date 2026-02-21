@@ -28,7 +28,7 @@ os.makedirs("data/processed", exist_ok=True)
 
 # --- CONFIGURATION ---
 TARGET_SITES = [
-"https://www.salesforce.com", "https://www.hubspot.com", "https://www.freshworks.com", "https://www.monday.com", "https://www.clickup.com", "https://www.atlassian.com", "https://www.slack.com", "https://www.datadoghq.com", "https://www.newrelic.com", "https://www.splunk.com", "https://www.cloudflare.com", "https://www.okta.com", "https://www.digitalocean.com", "https://www.scaleway.com", "https://www.mongodb.com", "https://www.snowflake.com", "https://www.twilio.com", "https://www.sendgrid.com", "https://www.mailchimp.com", "https://www.intercom.com", "https://www.zendesk.com", "https://www.pendo.io", "https://www.gong.io", "https://www.zoominfo.com", "https://www.lusha.com", "https://www.cognism.com", "https://www.6sense.com", "https://www.demandbase.com", "https://www.shopify.com", "https://www.bigcommerce.com"
+"https://www.6sense.com", "https://www.demandbase.com", "https://www.cognism.com", "https://www.lusha.com", "https://www.seamless.ai", "https://www.uplead.com", "https://www.lead411.com", "https://www.clearbit.com", "https://www.bombora.com", "https://www.advent.com", "https://www.adyen.com", "https://www.plaid.com", "https://www.ramp.com", "https://www.airwallex.com", "https://www.revolut.com", "https://www.fiserv.com", "https://www.dynatrace.com", "https://www.newrelic.com", "https://www.datadoghq.com", "https://www.grafana.com", "https://www.elastic.co", "https://www.pennylane.com", "https://www.bigcommerce.com","https://www.woocommerce.com", "https://www.wix.com", "https://www.squarespace.com", "https://www.webflow.com", "https://www.morpheusdata.com", "https://www.digitalocean.com"
 ]
 
 # Dynamic inter-site delay based on provider

@@ -1,0 +1,82 @@
+{
+  "simulation_id": "5cf56e5d-7f54-4001-ad5f-895ca98a0691",
+  "timestamp": "2026-02-21T15:09:05.419523",
+  "target_url": "https://www.advent.com",
+  "company_context": "Portfolio Management and Accounting Solutions | SS&C Advent NEWS | SS&C Advent Wins Two 2025 Waters Technology Buy-Side Awards | READ NOW One Account, Many Strategies: Rethinking Portfolio Management with UMAs Discover how both the promise and the challenges of UMAs, can lay the groundwork for firms to turn operational hurdles into strategic opportunities READ THE ARTICLE Level Up Investment Operations with Genesis One powerful platform built to simplify complexity. Unite your team and transform your competitive edge with Genesis. Watch the video WATCH THE VIDEO From AI to SMAs: Trends That Shaped 2025 We’re recapping the biggest investment management insights from 2025—from AI and compliance to SMAs, multi-asset strategies, and tech modernization. Tune in for actionable takeaways that will help start 2026 with clarity and confidence. Listen Now Winning in Private Markets: How to Boost Efficiency to Enhance Margins and Scale with Demand Discover how leading investment managers are conquering the rising complexity of private markets in this exclusive report from Clear Path Analysis, in partnership with SS&C Advent. READ THE REPORT The Allocator’s New Playbook: Operational Infrastructure is Make-or-break for Hedge Funds The operational infrastructure landscape for hedge fund managers has undergone a fundamental shift. Explore today’s investors’ decision-making frameworks and how fund managers are responding. Read the new rulebook. READ NOW Tools to help investment managers navigate their financial terrain. SS&C Advent delivers financial technology solutions and services to financial services clients in the asset management, wealth management, and alternative investment space around the globe. Learn How Find your place at SS&C Advent. Join experienced professionals who share the same passion for excellence, collaboration, and integrity. View Open Positions Meeting the many demands of your business. For 30+ years, SS&C Advent has been delivering financial services innovations and insights. Leverage our suite of award-winning financial technology solutions to optimize your workflows. Who We Serve Future-proof your business, front to back. Future-proof your business with asset management, wealth management, and alternative investment solutions covering the entire investment management process. Solutions TOP STORIES 11 February 2026 Estate and Legacy Planning in a New Policy Era | A Defining Opportunity for Advisors Read More 04 February 2026 A Platform Built for What’s Next in Mineral Management Read More 02 February 2026 From Assessment to Implementation: Your Roadmap for Successful Investment Technology Transitions Read More 28 January 2026 5 Trends Reshaping Investment Management in 2026 Read More",
+  "conversation": [
+    {
+      "turn": 1,
+      "speaker": "Seller",
+      "message": "Hi, my name is Alex and I'm a Sales Development Representative at DeepData AI. I came across SS&C Advent and was impressed with the work you're doing in the financial technology space. I'd love to introduce you to our data processing solution, which has helped similar companies like yours streamline their operations and gain valuable insights from their data.",
+      "word_count": 59,
+      "char_count": 361
+    },
+    {
+      "turn": 1,
+      "speaker": "Buyer",
+      "message": "Hi Alex, I'm John, the CTO here. We're always looking for ways to improve our operations, but I have to say, we've got a lot on our plate right now. What makes you think your solution is a good fit for us, and how does it differ from what we're currently using?",
+      "word_count": 52,
+      "char_count": 261
+    },
+    {
+      "turn": 2,
+      "speaker": "Seller",
+      "message": "Well, John, our DeepData AI solution uses machine learning algorithms to process large datasets quickly and accurately, which can help you make more informed decisions and stay ahead of the competition. We've seen significant ROI for our clients in the financial services industry, and I think we could do the same for you. We're also integrated with many of the popular portfolio management and accounting systems, so integration would be seamless.",
+      "word_count": 71,
+      "char_count": 449
+    },
+    {
+      "turn": 2,
+      "speaker": "Buyer",
+      "message": "I see. That sounds interesting, but we've recently invested in a new data analytics platform, and I'm not sure we're ready to rip and replace it with something new. Not to mention, our budget for this year is already allocated, and I'm not sure we have the resources to take on a new project like this. Can you tell me more about the cost and what kind of resources would be required for implementation?",
+      "word_count": 74,
+      "char_count": 403
+    },
+    {
+      "turn": 3,
+      "speaker": "Seller",
+      "message": "I completely understand, John. The cost of our solution is competitive with other data processing solutions on the market, and we offer flexible pricing plans to fit your needs. As for resources, we have a dedicated implementation team that would work closely with your team to ensure a smooth transition. However, I would need to discuss the specifics of the pricing and implementation plan with our sales team and get back to you with a customized proposal.",
+      "word_count": 77,
+      "char_count": 459
+    },
+    {
+      "turn": 3,
+      "speaker": "Buyer",
+      "message": "I appreciate the offer, Alex, but to be honest, this is not a priority for us right now. We're in the middle of a major system upgrade, and our team is already stretched thin. I don't think we could take on another project, no matter how promising it sounds. Maybe we can revisit this conversation in a few months when things have settled down, but for now, I think we're going to have to pass.",
+      "word_count": 75,
+      "char_count": 394
+    },
+    {
+      "turn": 4,
+      "speaker": "Seller",
+      "message": "I understand, John. It was great speaking with you, and I appreciate your honesty. I'll make sure to follow up with you in a few months to see if your priorities have changed.",
+      "word_count": 33,
+      "char_count": 175
+    },
+    {
+      "turn": 4,
+      "speaker": "Buyer",
+      "message": "Thank you, Alex, but I think we're going to have to decline. We appreciate the introduction to DeepData AI, but we just can't take on anything new at this time. Please don't follow up, and let's just consider this matter closed.",
+      "word_count": 41,
+      "char_count": 228
+    }
+  ],
+  "analysis": {
+    "raw": "Score: 2\nOutcome: Failure\nKey_Objection: Timing\nFeedback: The seller should have more effectively addressed the buyer's current priorities and explored potential solutions that could help with their immediate needs, rather than simply agreeing to follow up in the future. Sentiment: Neutral",
+    "parsed": {
+      "score": 2,
+      "outcome": "Failure",
+      "key_objection": "Timing",
+      "feedback": "The seller should have more effectively addressed the buyer's current priorities and explored potential solutions that could help with their immediate needs, rather than simply agreeing to follow up in the future. Sentiment: Neutral"
+    }
+  },
+  "metrics": {
+    "num_turns": 4,
+    "total_seller_words": 240,
+    "total_buyer_words": 242,
+    "avg_seller_words_per_turn": 60.0,
+    "avg_buyer_words_per_turn": 60.5,
+    "word_ratio_seller_buyer": 0.99,
+    "total_conversation_length": 482
+  }
+}

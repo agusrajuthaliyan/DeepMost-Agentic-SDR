@@ -1,0 +1,82 @@
+{
+  "simulation_id": "08e01a52-f2c5-47a0-a0c7-41b511a9d141",
+  "timestamp": "2026-02-21T15:07:40.643825",
+  "target_url": "https://www.6sense.com",
+  "company_context": "Just a moment... Enable JavaScript and cookies to continue",
+  "conversation": [
+    {
+      "turn": 1,
+      "speaker": "Seller",
+      "message": "Hi, my name is Alex and I'm reaching out from DeepData AI. We're a data processing solution that helps companies like yours make better decisions with their data. Can you tell me a little bit about your current data processing workflow?",
+      "word_count": 41,
+      "char_count": 236
+    },
+    {
+      "turn": 1,
+      "speaker": "Buyer",
+      "message": "Ah, yeah. We're currently using a combination of in-house tools and a solution from one of your competitors, DataForge. It's been working okay for us so far. What makes DeepData AI different from what we're already using?",
+      "word_count": 37,
+      "char_count": 221
+    },
+    {
+      "turn": 2,
+      "speaker": "Seller",
+      "message": "Well, our AI-powered engine allows for much faster processing times and more accurate insights. We've seen companies like yours reduce their processing time by up to 50% and increase their revenue by up to 20%. I'd love to schedule a demo to show you exactly how it works.",
+      "word_count": 48,
+      "char_count": 272
+    },
+    {
+      "turn": 2,
+      "speaker": "Buyer",
+      "message": "I'm not sure we're in the market for a new solution right now. We just implemented DataForge about 6 months ago and we're still getting used to it. Plus, I've heard that DeepData AI is pretty pricey. How does your pricing compare to what we're paying now?",
+      "word_count": 47,
+      "char_count": 255
+    },
+    {
+      "turn": 3,
+      "speaker": "Seller",
+      "message": "Our pricing is competitive with the market, and we offer customized plans to fit each company's specific needs. I can offer you a discount for being a new customer, and I think you'll find that the ROI on our solution far outweighs the cost. Would you be open to discussing pricing further and seeing if we can make it work for you?",
+      "word_count": 62,
+      "char_count": 332
+    },
+    {
+      "turn": 3,
+      "speaker": "Buyer",
+      "message": "Honestly, I'm not convinced that the benefits of switching to DeepData AI would be worth the cost and the hassle of integrating a new system. We've already invested a lot of time and resources into getting DataForge up and running, and I'm not sure our team would be on board with switching again so soon. Plus, I'd need to get approval from our CFO, and I'm not sure she'd be willing to sign off on the expense.",
+      "word_count": 77,
+      "char_count": 412
+    },
+    {
+      "turn": 4,
+      "speaker": "Seller",
+      "message": "I understand your concerns, and I appreciate your honesty. Can I at least send you some case studies and whitepapers to show you the success that other companies have had with our solution? Maybe that would help make a stronger business case for implementing DeepData AI.",
+      "word_count": 46,
+      "char_count": 271
+    },
+    {
+      "turn": 4,
+      "speaker": "Buyer",
+      "message": "No, thank you. I think we're going to have to pass on DeepData AI for now. We're happy with our current solution and don't see a compelling reason to switch. I appreciate your time, but I think we're all set.",
+      "word_count": 40,
+      "char_count": 208
+    }
+  ],
+  "analysis": {
+    "raw": "Score: 2\nOutcome: Failure\nKey_Objection: Price\nFeedback: The seller should have more effectively addressed the buyer's price concerns and provided a clearer ROI justification to overcome the objection. Sentiment: Negative",
+    "parsed": {
+      "score": 2,
+      "outcome": "Failure",
+      "key_objection": "Price",
+      "feedback": "The seller should have more effectively addressed the buyer's price concerns and provided a clearer ROI justification to overcome the objection. Sentiment: Negative"
+    }
+  },
+  "metrics": {
+    "num_turns": 4,
+    "total_seller_words": 197,
+    "total_buyer_words": 201,
+    "avg_seller_words_per_turn": 49.25,
+    "avg_buyer_words_per_turn": 50.25,
+    "word_ratio_seller_buyer": 0.98,
+    "total_conversation_length": 398
+  }
+}

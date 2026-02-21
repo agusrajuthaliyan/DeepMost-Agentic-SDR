@@ -1,0 +1,82 @@
+{
+  "simulation_id": "d580263a-652a-4977-91ee-7a54b5fd5ec6",
+  "timestamp": "2026-02-21T15:10:37.177104",
+  "target_url": "https://www.pennylane.com",
+  "company_context": "Pennylane Redirection...",
+  "conversation": [
+    {
+      "turn": 1,
+      "speaker": "Seller",
+      "message": "Hi, my name is Alex and I'm reaching out from DeepData AI. We're a data processing solution that helps companies like yours optimize their data management. Can you tell me a little bit about your current data processing setup?",
+      "word_count": 39,
+      "char_count": 226
+    },
+    {
+      "turn": 1,
+      "speaker": "Buyer",
+      "message": "Ah, yes. We're currently using a solution from Datamine. It's been working for us, but we're always open to exploring other options. What makes DeepData AI unique?",
+      "word_count": 27,
+      "char_count": 163
+    },
+    {
+      "turn": 2,
+      "speaker": "Seller",
+      "message": "Well, our AI-powered engine allows for much faster and more accurate data processing, which can lead to significant cost savings and improved decision-making. We've seen our clients achieve up to 30% reduction in processing time. Would you like to hear more about how it works?",
+      "word_count": 45,
+      "char_count": 277
+    },
+    {
+      "turn": 2,
+      "speaker": "Buyer",
+      "message": "That sounds interesting, but I have to say, we're locked into a contract with Datamine for another 18 months. I'm not sure we'd be able to switch vendors even if we wanted to. Plus, I'd need to see some pretty compelling ROI to justify the change.",
+      "word_count": 46,
+      "char_count": 247
+    },
+    {
+      "turn": 3,
+      "speaker": "Seller",
+      "message": "I completely understand the contract situation, but I'd like to discuss how our solution can still provide long-term benefits. Even if it's not feasible to switch immediately, it's worth considering for when the contract is up for renewal. As for ROI, we've had clients see significant returns, and I'd be happy to provide some case studies.",
+      "word_count": 56,
+      "char_count": 341
+    },
+    {
+      "turn": 3,
+      "speaker": "Buyer",
+      "message": "I appreciate the offer, but to be honest, our team is pretty heavily invested in the Datamine platform, and integrating a new solution would require a lot of time and resources. Not to mention, our procurement team would need to get involved, and that's always a lengthy process. I'm just not sure it's worth the hassle.",
+      "word_count": 56,
+      "char_count": 320
+    },
+    {
+      "turn": 4,
+      "speaker": "Seller",
+      "message": "I understand the integration concerns, and I can assure you that our team would work closely with yours to make the transition as smooth as possible. However, I also want to respect your current situation. Can I at least send over some information and follow up in a few months to see if anything has changed?",
+      "word_count": 56,
+      "char_count": 309
+    },
+    {
+      "turn": 4,
+      "speaker": "Buyer",
+      "message": "Thank you, Alex, but I think we're going to have to pass on DeepData AI for now. We appreciate the reach-out, but our hands are tied with the existing contract, and I don't see that changing anytime soon. I wish you the best of luck with your sales efforts, but we won't be moving forward.",
+      "word_count": 55,
+      "char_count": 289
+    }
+  ],
+  "analysis": {
+    "raw": "Score: 4\nOutcome: Failure\nKey_Objection: Timing\nFeedback: The seller should have more aggressively addressed the buyer's contract timeline and explored potential alternatives or compromises to keep the conversation alive. Sentiment: Neutral",
+    "parsed": {
+      "score": 4,
+      "outcome": "Failure",
+      "key_objection": "Timing",
+      "feedback": "The seller should have more aggressively addressed the buyer's contract timeline and explored potential alternatives or compromises to keep the conversation alive. Sentiment: Neutral"
+    }
+  },
+  "metrics": {
+    "num_turns": 4,
+    "total_seller_words": 196,
+    "total_buyer_words": 184,
+    "avg_seller_words_per_turn": 49.0,
+    "avg_buyer_words_per_turn": 46.0,
+    "word_ratio_seller_buyer": 1.07,
+    "total_conversation_length": 380
+  }
+}

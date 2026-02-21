@@ -1,0 +1,82 @@
+{
+  "simulation_id": "5f03bd38-94aa-4d2a-943b-3ce5a04fb6af",
+  "timestamp": "2026-02-21T15:07:57.124504",
+  "target_url": "https://www.6sense.com",
+  "company_context": "Just a moment... Enable JavaScript and cookies to continue",
+  "conversation": [
+    {
+      "turn": 1,
+      "speaker": "Seller",
+      "message": "Hi, my name is Alex and I'm reaching out from DeepData AI. We're a data processing solution that helps companies like yours optimize their data management and gain valuable insights. Can you tell me a little bit about your current data processing setup?",
+      "word_count": 43,
+      "char_count": 253
+    },
+    {
+      "turn": 1,
+      "speaker": "Buyer",
+      "message": "Ah, yes. We're currently using a competitor's solution, and to be honest, we're pretty locked into their contract for the next two years. What makes you think we'd be interested in switching?",
+      "word_count": 32,
+      "char_count": 191
+    },
+    {
+      "turn": 2,
+      "speaker": "Seller",
+      "message": "I completely understand the contract situation, but our solution has been shown to increase processing speed by up to 30% and reduce costs by up to 25%. Even if you're not looking to switch immediately, it might be worth exploring options for when your contract is up for renewal. Would you be open to a quick demo to see how our solution could benefit your company?",
+      "word_count": 66,
+      "char_count": 366
+    },
+    {
+      "turn": 2,
+      "speaker": "Buyer",
+      "message": "I appreciate the offer, but like I said, we're committed to our current contract. Plus, I'm not sure our team would be able to handle the integration process with a new solution. We've invested a lot of time and resources into getting our current system up and running smoothly. What kind of support do you offer for integration?",
+      "word_count": 58,
+      "char_count": 329
+    },
+    {
+      "turn": 3,
+      "speaker": "Seller",
+      "message": "We have a dedicated integration team that works closely with our clients to ensure a seamless transition. We also offer customized training for your team to get them up to speed on our solution. As for the cost, we're actually very competitive with our pricing, and I think we could offer a more cost-effective solution than what you're currently paying.",
+      "word_count": 60,
+      "char_count": 354
+    },
+    {
+      "turn": 3,
+      "speaker": "Buyer",
+      "message": "I'm not convinced that the cost savings would be worth the hassle of switching, especially considering the timing. We're in the middle of a major project and can't afford to disrupt our data processing workflow right now. Not to mention, our current provider is a well-established company with a proven track record, whereas I've never heard of DeepData AI before. How can I be sure you'll be around in a year or two?",
+      "word_count": 73,
+      "char_count": 417
+    },
+    {
+      "turn": 4,
+      "speaker": "Seller",
+      "message": "I understand your concerns about our company's stability, but I can assure you that we're a solid and growing company with a strong client base. We've also received funding from several major investors, which will help us continue to innovate and expand our services. As for the timing, I understand that it might not be ideal, but sometimes it's better to take a proactive approach and plan for the future rather than waiting until it's too late.",
+      "word_count": 77,
+      "char_count": 447
+    },
+    {
+      "turn": 4,
+      "speaker": "Buyer",
+      "message": "I appreciate your persistence, Alex, but I think we're going to have to pass on DeepData AI for now. Our contract with the competitor is non-negotiable, and we can't afford to take on the risk and disruption of switching to a new solution at this time. Thank you for your time, but I think we'll stick with what we have.",
+      "word_count": 60,
+      "char_count": 320
+    }
+  ],
+  "analysis": {
+    "raw": "Score: 4\nOutcome: Failure\nKey_Objection: Integration\nFeedback: The seller should have more effectively addressed the buyer's concerns about integration and disruption to their current workflow by providing more detailed information about the dedicated integration team and customized training. Sentiment: Neutral",
+    "parsed": {
+      "score": 4,
+      "outcome": "Failure",
+      "key_objection": "Integration",
+      "feedback": "The seller should have more effectively addressed the buyer's concerns about integration and disruption to their current workflow by providing more detailed information about the dedicated integration team and customized training. Sentiment: Neutral"
+    }
+  },
+  "metrics": {
+    "num_turns": 4,
+    "total_seller_words": 246,
+    "total_buyer_words": 223,
+    "avg_seller_words_per_turn": 61.5,
+    "avg_buyer_words_per_turn": 55.75,
+    "word_ratio_seller_buyer": 1.1,
+    "total_conversation_length": 469
+  }
+}

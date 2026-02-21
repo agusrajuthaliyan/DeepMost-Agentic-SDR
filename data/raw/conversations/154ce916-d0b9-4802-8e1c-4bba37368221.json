@@ -1,0 +1,82 @@
+{
+  "simulation_id": "154ce916-d0b9-4802-8e1c-4bba37368221",
+  "timestamp": "2026-02-21T15:09:30.439166",
+  "target_url": "https://www.ramp.com",
+  "company_context": "Spend Management, Corporate Cards & Accounts Payable Solutions | Ramp 2,000+ 5 star reviews Time is money. Save both. Easy-to-use corporate cards, bill payments, accounting, and a whole lot more. All in one place. Email Get started for free Explore product 50,000+ finance teams have saved millions of hours with Ramp. Since 2024 Since 2024 Since 2023 Since 2024 Since 2023 Since 2023 Since 2022 Since 2023 Since 2022 Since 2022 Since 2023 Since 2023 Since 2021 Since 2024 Since 2021 Since 2022 Since 2026 Since 2023 Since 2024 Since 2024 Since 2023 Since 2024 Since 2023 Since 2023 Since 2022 Since 2023 Since 2022 Since 2022 Since 2023 Since 2023 Since 2021 Since 2024 Since 2021 Since 2022 Since 2026 Since 2023 Since 2024 Since 2024 Since 2023 Since 2024 Since 2023 Since 2023 Since 2022 Since 2023 Since 2022 Since 2022 Since 2023 Since 2023 Since 2021 Since 2024 Since 2021 Since 2022 Since 2026 Since 2023 Since 2024 Since 2024 Since 2023 Since 2024 Since 2023 Since 2023 Since 2022 Since 2023 Since 2022 Since 2022 Since 2023 Since 2023 Since 2021 Since 2024 Since 2021 Since 2022 Since 2026 Since 2023 Since 2024 Since 2024 Since 2023 Since 2024 Since 2023 Since 2023 Since 2022 Since 2023 Since 2022 Since 2022 Since 2023 Since 2023 Since 2021 Since 2024 Since 2021 Since 2022 Since 2026 Since 2023 Since 2024 Since 2024 Since 2023 Since 2024 Since 2023 Since 2023 Since 2022 Since 2023 Since 2022 Since 2022 Since 2023 Since 2023 Since 2021 Since 2024 Since 2021 Since 2022 Since 2026 Since 2023 50,000+ finance teams have saved millions of hours with Ramp. Ramp Product Suite Get to know Ramp Replace multiple broken tools with Ramp, the only platform designed to make your finance team faster—and happier. Ramp Intelligence Put Ramp AI to work for you. Learn more Corporate Cards Control spend before it happens. Learn more Expense Management Expenses that submit themselves. Learn more Accounts Payable Process bills in seconds. Learn more Travel Travel that's always in policy. Learn more Procurement Run intake-to-pay without delay. Learn more Accounting Automation Accelerate your monthly close. Learn more Ramp Treasury Business accounts that earn more. Learn more Investment account -.--% 2 Business account -.--% 1 Ramp Intelligence Put Ramp AI to work for you. credit_card Corporate Cards Control spend before it happens. pie_chart Expense Management Expenses that submit themselves. Travel Travel that's always in policy. Accounts Payable Process bills in seconds. shopping_bag Procurement Run intake-to-pay without delay. Accounting Automation Accelerate your monthly close. trending_up Ramp Treasury Business accounts that earn more. Don't just take our word for it. We’ve simplified our workflows while improving accuracy, and we are faster in closing with the help of automation. We could not have achieved this without the solutions Ramp brought to the table. Kaustubh Khandelwal, VP of Finance Read customer story Ramp is the only vendor that can service all of our employ",
+  "conversation": [
+    {
+      "turn": 1,
+      "speaker": "Seller",
+      "message": "Hi, my name is Emily and I'm reaching out from DeepData AI. We're a data processing solution that helps companies like yours streamline their financial operations. I came across Ramp and was impressed with the work you're doing in spend management and corporate cards. I think our solution could be a great fit for your team.",
+      "word_count": 56,
+      "char_count": 325
+    },
+    {
+      "turn": 1,
+      "speaker": "Buyer",
+      "message": "Hi Emily, thanks for reaching out. I'm John, the CTO here at Ramp. We're always looking for ways to improve our operations, but I have to say, we've already invested heavily in our current data processing infrastructure. What makes DeepData AI different from what we're already using?",
+      "word_count": 47,
+      "char_count": 284
+    },
+    {
+      "turn": 2,
+      "speaker": "Seller",
+      "message": "That's a great question, John. Our AI-powered engine is able to process large datasets much faster and more accurately than traditional solutions. We've seen companies like yours save up to 30% on their data processing costs. Plus, our integration with popular accounting software makes it easy to get up and running.",
+      "word_count": 51,
+      "char_count": 317
+    },
+    {
+      "turn": 2,
+      "speaker": "Buyer",
+      "message": "I see. Well, we're currently using a custom-built solution that's been tailored to our specific needs. I'm not sure if we'd be willing to rip and replace what we have, especially considering the cost. Your solution sounds interesting, but can you tell me more about the pricing?",
+      "word_count": 47,
+      "char_count": 278
+    },
+    {
+      "turn": 3,
+      "speaker": "Seller",
+      "message": "Absolutely. Our pricing is based on the volume of data being processed, and we offer tiered pricing to fit different company sizes. For a company like Ramp, I'd estimate the cost would be around $10,000 per month. However, we've seen our customers save much more than that in reduced processing time and increased efficiency.",
+      "word_count": 54,
+      "char_count": 325
+    },
+    {
+      "turn": 3,
+      "speaker": "Buyer",
+      "message": "That's a pretty significant investment. To be honest, I'm not sure if we're ready to make a change like that right now. We're in the middle of our budgeting cycle, and I don't think we have the appetite for a new project like this. Plus, I'd need to involve our procurement team and get buy-in from our CFO.",
+      "word_count": 58,
+      "char_count": 307
+    },
+    {
+      "turn": 4,
+      "speaker": "Seller",
+      "message": "I understand, John. I'd be happy to provide more information and answer any questions you or your team may have. Perhaps we could schedule a follow-up call to discuss further?",
+      "word_count": 30,
+      "char_count": 175
+    },
+    {
+      "turn": 4,
+      "speaker": "Buyer",
+      "message": "Emily, I appreciate the follow-up, but I think it's best if you just send me an email with some more information about DeepData AI. We'll take a look and reach out if we're interested in moving forward. Thanks for reaching out, but I don't think we'll be pursuing this further at this time.",
+      "word_count": 53,
+      "char_count": 290
+    }
+  ],
+  "analysis": {
+    "raw": "Score: 4\nOutcome: Failure\nKey_Objection: Price\nFeedback: The seller should have been more prepared to address the buyer's concerns about cost and potentially offered a more flexible pricing structure or a pilot project to mitigate the risk. Sentiment: Neutral",
+    "parsed": {
+      "score": 4,
+      "outcome": "Failure",
+      "key_objection": "Price",
+      "feedback": "The seller should have been more prepared to address the buyer's concerns about cost and potentially offered a more flexible pricing structure or a pilot project to mitigate the risk. Sentiment: Neutral"
+    }
+  },
+  "metrics": {
+    "num_turns": 4,
+    "total_seller_words": 191,
+    "total_buyer_words": 205,
+    "avg_seller_words_per_turn": 47.75,
+    "avg_buyer_words_per_turn": 51.25,
+    "word_ratio_seller_buyer": 0.93,
+    "total_conversation_length": 396
+  }
+}

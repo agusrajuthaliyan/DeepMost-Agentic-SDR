@@ -1,0 +1,82 @@
+{
+  "simulation_id": "f94fcc8f-1437-42cb-9f27-057c048e2893",
+  "timestamp": "2026-02-21T15:09:44.336703",
+  "target_url": "https://www.revolut.com",
+  "company_context": "Just a quick security check | Revolut Just a quick security check Enable JavaScript and cookies to continue",
+  "conversation": [
+    {
+      "turn": 1,
+      "speaker": "Seller",
+      "message": "Hi, my name is Alex and I'm reaching out from DeepData AI. We're a data processing solution that helps companies like yours make better decisions with their data. How are you today?",
+      "word_count": 32,
+      "char_count": 181
+    },
+    {
+      "turn": 1,
+      "speaker": "Buyer",
+      "message": "I'm doing well, thanks. But I have to say, I'm a bit busy at the moment. We're in the middle of a security audit and I'm not sure I have time to talk about new solutions. What makes you think we need DeepData AI?",
+      "word_count": 44,
+      "char_count": 212
+    },
+    {
+      "turn": 2,
+      "speaker": "Seller",
+      "message": "I understand that security is a top priority, and that's actually one of the areas where DeepData AI can help. Our solution can help you process and analyze large amounts of data to identify potential security threats. We've had success with similar companies in the past, and I think we could really help you streamline your data processing.",
+      "word_count": 58,
+      "char_count": 342
+    },
+    {
+      "turn": 2,
+      "speaker": "Buyer",
+      "message": "I see. Well, we do have a lot of data to process, but we're currently using a combination of in-house tools and some existing vendors. I'm not sure we're looking to add another solution to the mix, especially if it's going to require a lot of integration work. How does your solution integrate with our existing systems?",
+      "word_count": 57,
+      "char_count": 320
+    },
+    {
+      "turn": 3,
+      "speaker": "Seller",
+      "message": "That's a great question. DeepData AI is designed to be highly flexible and can integrate with a wide range of systems. We've worked with companies that use similar tech stacks to yours, and we've been able to integrate our solution with minimal disruption. We also offer a free trial, so you can see how it works before committing to anything.",
+      "word_count": 60,
+      "char_count": 343
+    },
+    {
+      "turn": 3,
+      "speaker": "Buyer",
+      "message": "I appreciate that, but to be honest, I'm not sure we have the budget for this right now. We're in the middle of a tight fiscal year and we're being careful about where we allocate our resources. Can you tell me more about the pricing for DeepData AI?",
+      "word_count": 48,
+      "char_count": 250
+    },
+    {
+      "turn": 4,
+      "speaker": "Seller",
+      "message": "Our pricing is competitive with other solutions on the market, and we offer a tiered pricing structure to fit different company sizes and needs. However, I understand that budget is a concern for many companies. I'd be happy to discuss pricing in more detail and see if we can find a solution that works for you.",
+      "word_count": 56,
+      "char_count": 312
+    },
+    {
+      "turn": 4,
+      "speaker": "Buyer",
+      "message": "I appreciate your understanding, but I think we're going to have to pass on this for now. We just don't have the bandwidth to take on a new project, and like I said, it's not a priority for us at the moment. I appreciate the pitch, but I think we'll have to decline.",
+      "word_count": 53,
+      "char_count": 266
+    }
+  ],
+  "analysis": {
+    "raw": "Score: 4\nOutcome: Failure\nKey_Objection: Timing\nFeedback: The seller should have more aggressively addressed the buyer's initial objection about being busy with a security audit and explored potential pain points that DeepData AI could help alleviate in the short term. Sentiment: Neutral",
+    "parsed": {
+      "score": 4,
+      "outcome": "Failure",
+      "key_objection": "Timing",
+      "feedback": "The seller should have more aggressively addressed the buyer's initial objection about being busy with a security audit and explored potential pain points that DeepData AI could help alleviate in the short term. Sentiment: Neutral"
+    }
+  },
+  "metrics": {
+    "num_turns": 4,
+    "total_seller_words": 206,
+    "total_buyer_words": 202,
+    "avg_seller_words_per_turn": 51.5,
+    "avg_buyer_words_per_turn": 50.5,
+    "word_ratio_seller_buyer": 1.02,
+    "total_conversation_length": 408
+  }
+}
