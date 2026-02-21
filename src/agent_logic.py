@@ -158,20 +158,114 @@ def _generate_content(prompt: str, max_retries: int = 4) -> str:
 # PUBLIC API  (same interface regardless of provider)
 # ---------------------------------------------------------------
 
+def _score_company_fit(context: str) -> dict:
+    """
+    Score how well a company fits the product based on scraped context.
+    Returns a dict with the fit_score (0-10), success_probability, and matched signals.
+    
+    Uses a logistic (sigmoid) function to map fit score → probability:
+        P(success) = base_rate + max_boost × σ(k × (score - midpoint))
+    
+    This produces:
+        score=0  → P ≈ 6%  (no fit signals, cold call)
+        score=3  → P ≈ 12% (some relevance)
+        score=5  → P ≈ 20% (decent fit)
+        score=7  → P ≈ 28% (strong fit)
+        score=10 → P ≈ 34% (near-perfect fit)
+    Average across diverse companies: ~15-20%
+    """
+    import math
+    
+    ctx = context.lower()
+    
+    # --- Positive fit signals (increase success probability) ---
+    pain_keywords = [
+        'legacy', 'outdated', 'manual', 'slow', 'inefficient', 'bottleneck',
+        'struggling', 'challenge', 'pain point', 'problem', 'issue',
+        'expensive', 'costly', 'overhead', 'technical debt'
+    ]
+    data_keywords = [
+        'data processing', 'analytics', 'etl', 'pipeline', 'database',
+        'data warehouse', 'big data', 'data lake', 'data integration',
+        'data management', 'machine learning', 'ai', 'artificial intelligence',
+        'business intelligence', 'reporting', 'dashboard'
+    ]
+    need_keywords = [
+        'looking for', 'evaluating', 'upgrade', 'moderniz', 'migrat',
+        'transform', 'automat', 'optimiz', 'improv', 'scale', 'growth',
+        'expanding', 'digital transformation'
+    ]
+    budget_keywords = [
+        'enterprise', 'fortune', 'revenue', 'funding', 'series',
+        'million', 'billion', 'employees', 'workforce', 'global'
+    ]
+    
+    # --- Negative signals (decrease success probability) ---
+    anti_fit_keywords = [
+        'already using', 'satisfied', 'happy with', 'no need',
+        'not looking', 'small team', 'early stage', 'pre-revenue',
+        'non-profit', 'government'
+    ]
+    
+    # Count matches
+    pain_hits = sum(1 for kw in pain_keywords if kw in ctx)
+    data_hits = sum(1 for kw in data_keywords if kw in ctx)
+    need_hits = sum(1 for kw in need_keywords if kw in ctx)
+    budget_hits = sum(1 for kw in budget_keywords if kw in ctx)
+    anti_hits = sum(1 for kw in anti_fit_keywords if kw in ctx)
+    
+    # Weighted score (0-10 range)
+    raw_score = (
+        min(pain_hits * 1.5, 3.0) +    # Pain points: up to 3 pts
+        min(data_hits * 1.0, 3.0) +     # Data relevance: up to 3 pts
+        min(need_hits * 1.0, 2.0) +     # Active need: up to 2 pts
+        min(budget_hits * 0.5, 2.0) -   # Budget capacity: up to 2 pts
+        min(anti_hits * 1.5, 3.0)       # Anti-fit penalty: up to -3 pts
+    )
+    fit_score = max(0.0, min(10.0, raw_score))
+    
+    # Logistic sigmoid mapping
+    # P = base_rate + max_boost × sigmoid(k × (score - midpoint))
+    BASE_RATE = 0.05      # Floor: 5% even with no signals
+    MAX_BOOST = 0.30      # Ceiling: base + 30% = 35% max
+    K = 0.6               # Steepness
+    MIDPOINT = 5.0        # Score at which P = base + max_boost/2 = 20%
+    
+    sigmoid = 1.0 / (1.0 + math.exp(-K * (fit_score - MIDPOINT)))
+    success_prob = BASE_RATE + MAX_BOOST * sigmoid
+    
+    return {
+        'fit_score': round(fit_score, 1),
+        'success_probability': round(success_prob, 3),
+        'signals': {
+            'pain_points': pain_hits,
+            'data_relevance': data_hits,
+            'active_need': need_hits,
+            'budget_capacity': budget_hits,
+            'anti_fit': anti_hits
+        }
+    }
+
+
 def generate_synthetic_call(context: str) -> str:
     """
     Generate a synthetic sales call dialogue based on company context.
     Used by main.py for batch processing.
     
-    Uses randomization to control outcome distribution:
-    - 20% Success (buyer agrees to demo/meeting)
-    - 80% Failure (buyer rejects)
-    This is more reliable than asking the LLM to self-regulate percentages.
+    Uses context-aware logistic probability to determine success/failure:
+    - Scores the company for product-fit signals in the scraped text
+    - Maps fit_score through a sigmoid to get P(success) ∈ [5%, 35%]
+    - Companies with real data pain → higher success probability  
+    - Companies with no fit → near-zero success (realistic cold call)
+    - Average across diverse targets: ~15-20% success rate
     """
     import random
     
-    # Decide outcome BEFORE generating — gives us precise distribution control
-    is_success = random.random() < 0.20  # 20% success rate
+    # Score company fit and compute success probability
+    fit = _score_company_fit(context)
+    is_success = random.random() < fit['success_probability']
+    
+    print(f"   [FIT] score={fit['fit_score']}/10 → P(success)={fit['success_probability']:.0%} → {'SUCCESS' if is_success else 'FAILURE'}", flush=True)
     
     if is_success:
         outcome_instruction = """
